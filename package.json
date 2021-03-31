@@ -1,0 +1,23 @@
+{
+  "name": "Folio",
+  "version": "1.0.0",
+  "description": "Manon Brousse Portfolio",
+  "main": "js/main.js",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ninja-fire/Folio.git"
+  },
+  "author": "Ninja fire",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ninja-fire/Folio/issues"
+  },
+  "homepage": "https://github.com/ninja-fire/Folio",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
