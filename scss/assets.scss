@@ -1,0 +1,56 @@
+.card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  opacity: 0.3;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  box-shadow: 0px 20px 40px rgba(118, 93, 28, 0.15);
+  backdrop-filter: blur(50px);
+}
+
+.tag {
+
+  border-radius: 4px;
+
+  .green {
+    background: #96DB8C;
+    color: #241F58;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+    font-variant: small-caps;
+  }
+
+  .yellow {
+    background: #E0CC9F;
+    color: #FFFFFF;
+    font-family: 'Raleway', sans-serif;
+    font-variant: small-caps;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+
+  }
+}
+
+.imgProfile {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
+  border-radius: 65px;
+}
+
+.imgCarousselle {
+  width: 300px;
+  height: 300px;
+  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
+  border-radius: 12px;
+}
+
+.icon {
+  width: 12px;
+  height: 12px;
+}
