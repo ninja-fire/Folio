@@ -14,49 +14,84 @@
 <body>
 
 <div id="root-container">
+
+<!--  Top Container-->
   <div id="top-container">
-    <div id="prez-container">
-      <img class="imgProfile" src="image/michelineFringuee.png">
-      <div id="icon-container">
-        <button id="email-btn">
-          <svg></svg>
-        </button>
-        <button id="calendar-btn">
-          <svg></svg>
-        </button>
-      </div>
-      <div id="prez-txt-container">
-        <h1>Manon Brousse</h1>
-        <h2>Creative UI Designer</h2>
-        <div id="status-container">
-          <div id="active-tag" class="tag green">active</div>
-          <div id="location">
-            <svg id="location-icon"></svg>
-            <div>France</div>
+
+<!--    Left Container-->
+    <div id="left-container">
+      <!--    Presentation container-->
+      <div id="prez-container">
+
+        <img class="imgProfile" src="image/michelineFringuee.png">
+
+        <div id="icon-container">
+          <button class="btnFlat">
+            <img
+              src="image/email.svg"
+              alt="email icon"
+              height="18px"
+              width="30px" />
+          </button>
+          <button class="btnFlat">
+            <img
+              src="image/calendar.svg"
+              alt="calendar icon"
+              height="30px"
+              width="30px" />
+          </button>
+        </div>
+
+        <div id="prez-txt-container">
+
+          <h1>Manon Brousse</h1>
+          <h2>Creative UI Designer</h2>
+
+          <div id="status-container">
+            <div id="active-tag" class="tag green">active</div>
+            <div id="location">
+              <img
+                src="image/location.svg"
+                alt="location icon"
+                height="25px"
+                width="20px" />
+              <div class="subtitle">France</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="review-container">
-      <h1>Reviews</h1>
-      <div id="review-content">
-        <a>Name Surname, Job Company</a>
-        <p>dlklflkld</p>
+
+      <!--    Review Container-->
+      <div id="review-container">
+        <h3>Reviews</h3>
+        <div id="review-content">
+          <a>Name Surname, Job Company</a>
+          <p>Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.</p>
+        </div>
+        <div id="review-icon">
+          <img
+            src="image/review-icon.svg"
+            alt="review icon"
+            height="10px"
+            width="36px" />
+        </div>
       </div>
-      <div id="icon-review-carousselle">
-        <svg src="image/review-icon.svg"></svg>
-      </div>
+
     </div>
+
+<!--    Activity Container-->
     <div id="activity-container" class="card">
-      <h1>Activity</h1>
-        <div id="current-container">
+      <h3>Activity</h3>
+      <div id="current-container">
           <div class="caption">current</div>
           <div class="activityBox">
             <div id="text-container1">
               <a>Metagame UI Design</a>
               <p>Decentralized social experiment that gamifies good actions</p>
             </div>
-            <div class="tag yellow">open</div>
+            <div class="tag yellow">
+              <div>open</div>
+            </div>
           </div>
         </div>
       <div id="passed-container">
@@ -79,18 +114,28 @@
           <div id="text-container">
             <a>Metagame UI Design</a>
             <p>Decentralized social experiment that gamifies good actions</p>
-          </div>
-          <div id="tag-container">OPEN</div>
+        </div>
+          <div class="tag yellow">open</div>
         </div>
       </div>
     </div>
   </div>
+
+<!--  Bottom Container-->
   <div id="bottom-container">
+
+<!--    Gallery Container-->
     <div id="gallery-container">
-      <h1>Gallery</h1>
+      <h3>Gallery</h3>
+
+<!--      Carousselle Container-->
       <div id="carousselle-container">
         <div class="icon">
-          <svg src="image/arrow.svg"></svg>
+          <img
+            src="image/arrowLeft.svg"
+            alt="arrow left icon"
+            height="12px"
+            width="12px" />
         </div>
         <div class="carousselle-box">
           <div class="imgCarousselle">
@@ -105,14 +150,20 @@
           <div class="subtitleSmall">Bold Media Landing Page</div>
         </div>
         <div class="icon">
-          <svg src="image/arrow.svg"></svg>
+          <img
+            src="image/arrowRight.svg"
+            alt="arrow right icon"
+            height="12px"
+            width="12px" />
         </div>
       </div>
     </div>
+
+<!--    Services Container-->
     <div id="services-container" class="card">
-      <h1>Services</h1>
+      <h3>Services</h3>
       <div id="uidesign-container">
-        <div class="caption">UI Design</div>
+        <div class="caption">ui design</div>
         <div class="activityBox">
           <div id="text-container4">
             <div class="subtitle">Interactive Mockup</div>
@@ -135,19 +186,24 @@
       <div id="project-container">
         <div class="caption">you have a project ?</div>
         <div class="activityBox">
-            <a>Send a message describing your needs     > </a>
-            <a>Let’s schedule a call     ></a>
+            <div><a>Send a message describing your needs     > </a></div>
+            <div><a>Let’s schedule a call     ></a></div>
           </div>
         </div>
         </div>
   </div>
+
+  <!--Footer-->
+  <footer>
+    <div id="footer-link">
+      <a href="https://github.com/ninja-fire/Folio" about="_blank">Made with 💛 by NinjaFire</a>
+    </div>
+  </footer>
+
 </div>
+
 
 <script src="./js/main.js"></script>
 </body>
-<footer>
-  <div id="footer-link">
-    <a>Made with 💛 by NinjaFire</a>
-  </div>
-</footer>
+
 </html>

@@ -1,29 +1,42 @@
 .card {
-  background: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  opacity: 0.3;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-sizing: border-box;
   box-shadow: 0px 20px 40px rgba(118, 93, 28, 0.15);
   backdrop-filter: blur(50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  padding: 30px;
+  height: 100%;
+
+  h3 {
+    align-self: center;
+  }
 }
 
 .tag {
 
   border-radius: 4px;
+  padding: 2px 8px 4px 8px;
+  align-items: center;
+  display: flex;
 
-  .green {
+
+  &.green {
     background: #96DB8C;
     color: #241F58;
     font-family: 'Raleway', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
-    line-height: 21px;
+    line-height: 20px;
     font-variant: small-caps;
   }
 
-  .yellow {
+  &.yellow {
     background: #E0CC9F;
     color: #FFFFFF;
     font-family: 'Raleway', sans-serif;
@@ -32,22 +45,23 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 16px;
-
+    margin: 10px;
   }
 }
 
 .imgProfile {
   width: 200px;
   height: 200px;
-  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 20px 40px rgba(118, 93, 28, 0.15));
   border-radius: 65px;
 }
 
 .imgCarousselle {
   width: 300px;
   height: 300px;
-  filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 20px 40px rgba(118, 93, 28, 0.15));
   border-radius: 12px;
+  margin: 2%;
 }
 
 .icon {

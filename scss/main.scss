@@ -1,9 +1,173 @@
 @import "css-reset";
 @import "typo";
 @import "assets";
+@import "button";
 
 body {
   background-color: #FFF6E1;
   height: 100vh;
   width: 100vw;
+
+  #root-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1.5% 1%;
+
+    #top-container {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      #left-container {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        flex-wrap: wrap;
+        margin: 0 2%;
+
+        #prez-container {
+          display: flex;
+          flex-direction: row;
+          order: 1;
+          flex-wrap: wrap;
+          //align-items: center;
+
+          #icon-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px 20px 20px 10px;
+
+          }
+
+          #prez-txt-container {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+
+            h2 {
+              margin-top: 10px;
+            }
+
+            #status-container {
+              display: flex;
+              flex-direction: row;
+              margin-top: 10px;
+
+              #location {
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                margin-left: 20px;
+
+                img {
+                  margin: 0 10px;
+                }
+              }
+            }
+          }
+        }
+
+        #review-container {
+          display: flex;
+          flex-direction: column;
+          order: 3;
+          margin-top: 2%;
+          align-self: flex-end;
+
+          #review-content {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #E0CC9F;
+            box-sizing: border-box;
+            border-radius: 12px;
+            padding: 10px;
+            margin-top: 10px;
+
+            a {
+              margin: 5px 20px;
+            }
+
+            p {
+              margin: 5px 20px;
+            }
+
+          }
+
+          #review-content::before {
+            content: url("../image/beforereview.svg");
+            align-self: flex-start;
+
+          }
+
+          #review-content::after {
+            content: url("../image/afterreview.svg");
+            align-self: flex-end;
+          }
+
+          #review-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+          }
+        }
+
+      }
+
+        .activityBox {
+          display: flex;
+          flex-direction: row;
+        }
+    }
+
+    #bottom-container{
+      display: flex;
+      flex-direction: row;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      #gallery-container {
+        display: flex;
+        flex-direction: column;
+        width: 45%;
+        margin: 0 2%;
+
+        #carousselle-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+
+          .carousselle-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2%;
+
+            img {
+              width: 100%;
+              height: 100%;
+              padding: 4%;
+            }
+          }
+        }
+      }
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2%;
+    }
+  }
+
 }
+
