@@ -21,6 +21,23 @@
   }
 }
 
+.feedCard {
+  display: flex;
+  flex-direction: row;
+
+  .text-container {
+    width: 80%;
+  }
+
+  &.current {
+
+  }
+
+  &.passed {
+
+  }
+}
+
 .tag {
 
   border-radius: 4px;

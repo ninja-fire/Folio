@@ -7,6 +7,7 @@ h1 {
   font-weight: normal;
   font-size: 48px;
   line-height: 57px;
+  letter-spacing: -0.05em;
 }
 
 h2 {
@@ -36,6 +37,10 @@ a {
   font-size: 14px;
   line-height: 16px;
   text-decoration-line: underline;
+
+  &.CtaLink {
+    color: #688F63;
+  }
 }
 
 p {
@@ -73,16 +78,6 @@ p {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-}
-
-.CtaLink {
-  color: #688F63;
-  font-family: 'Raleway', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  text-decoration-line: underline;
 }
 
 

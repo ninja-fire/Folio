@@ -27,7 +27,7 @@ body {
         flex-direction: column;
         width: 45%;
         flex-wrap: wrap;
-        margin: 0 2%;
+        margin: 0 3%;
 
         #prez-container {
           display: flex;
@@ -40,7 +40,7 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 20px 20px 20px 10px;
+            padding: 20px;
 
           }
 
@@ -119,10 +119,19 @@ body {
 
       }
 
-        .activityBox {
-          display: flex;
-          flex-direction: row;
-        }
+      #activity-container {
+        width: 30%;
+
+        //.activityBox {
+        //  display: flex;
+        //  flex-direction: row;
+        //
+        //  .text-container {
+        //    width: 80%;
+        //  }
+        //}
+
+      }
     }
 
     #bottom-container{
@@ -157,6 +166,14 @@ body {
               padding: 4%;
             }
           }
+        }
+      }
+
+      #CTA {
+
+        a {
+          color: #688F63;
+          margin: 2% 0;
         }
       }
     }
