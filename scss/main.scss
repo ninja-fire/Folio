@@ -27,7 +27,7 @@ body {
         flex-direction: column;
         width: 45%;
         flex-wrap: wrap;
-        margin: 0 3%;
+        margin: 0 2%;
 
         #prez-container {
           display: flex;
@@ -118,20 +118,6 @@ body {
         }
 
       }
-
-      #activity-container {
-        width: 30%;
-
-        //.activityBox {
-        //  display: flex;
-        //  flex-direction: row;
-        //
-        //  .text-container {
-        //    width: 80%;
-        //  }
-        //}
-
-      }
     }
 
     #bottom-container{
@@ -166,14 +152,6 @@ body {
               padding: 4%;
             }
           }
-        }
-      }
-
-      #CTA {
-
-        a {
-          color: #688F63;
-          margin: 2% 0;
         }
       }
     }
