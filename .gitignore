@@ -2,6 +2,7 @@
 node_modules
 /dist
 /.cache
+/.parcel-cache
 
 # Log files
 npm-debug.log*
