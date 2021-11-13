@@ -1,92 +1,47 @@
 // Typography
 
-h1 {
-  color: #241E58;
-  font-family: 'Poller One', cursive;
+.title {
+  color: #110F34;
+  font-family: 'Satoshi', sans-serif;
   font-style: normal;
-  font-weight: normal;
-  font-size: 48px;
-  line-height: 57px;
-  letter-spacing: -0.05em;
-}
-
-h2 {
-  color: #241E58;
-  font-family: 'Raleway', sans-serif;
-  font-style: normal;
-  font-weight: normal;
+  font-weight: 900;
   font-size: 24px;
-  line-height: 29px;
-
-}
-
-h3 {
-  color: #241E58;
-  font-family: 'Poller One', cursive;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 29px;
-}
-
-a {
-  color: #2A265D;
-  font-family: 'Raleway', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  text-decoration-line: underline;
-
-  &.CtaLink {
-    color: #688F63;
-  }
-}
-
-p {
-  color: rgba(36, 31, 88, 0.5);
-  font-family: 'Raleway', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
-}
-
-.caption {
-  color: #A6A1DB;
-  font-family: 'Raleway', sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 21px;
-  font-variant: small-caps;
+  line-height: 32px;
 }
 
 .subtitle {
-  color: #2A265D;
-  font-family: 'Raleway', sans-serif;
+  color: #B9D645;
+  font-family: 'Satoshi', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+
+}
+
+.body {
+  color: #110F34;
+  font-family: 'Satoshi', sans-serif;
+  font-style: normal;
+  font-weight: normal;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
 }
 
-.subtitleSmall {
-  color: #2A265D;
-  font-family: 'Raleway', sans-serif;
+.caption {
+  color: #110F34;
+  font-family: 'Satoshi', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 12px;
   line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
 }
 
-.def {
-  font-family: Raleway;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 14px;
-  margin-left: 2%;
-}
+
 
 
