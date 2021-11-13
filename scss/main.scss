@@ -11,9 +11,13 @@ body {
   #root-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     height: 100vh;
     width: 100vw;
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+    }
 
     #side-menu {
       display: flex;
@@ -35,8 +39,12 @@ body {
           display: flex;
           flex-direction: column;
           align-items: center;
+          text-align: center;
 
           div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding : 0.2rem;
           }
         }
@@ -70,157 +78,55 @@ body {
 
       #copyright {
         justify-content: flex-end;
+
+        a:link {
+          text-decoration: underline;
+        }
+
+        a:hover {
+          text-decoration: none;
+        }
       }
     }
 
-    #top-container {
+    #center {
       display: flex;
       flex-direction: row;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
 
-      #left-container {
+      #main {
+        border-right: 1px solid #9C9F8D;
         display: flex;
         flex-direction: column;
-        width: 45%;
-        flex-wrap: wrap;
-        margin: 0 2%;
+        justify-content: center;
+        padding: 0 5rem;
 
-        #prez-container {
+      }
+
+      #details {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+
+        #switch {
           display: flex;
           flex-direction: row;
-          order: 1;
-          flex-wrap: wrap;
-          //align-items: center;
+          justify-content: end;
 
-          #icon-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px;
-
-          }
-
-          #prez-txt-container {
-            display: flex;
-            flex-direction: column;
-            align-self: center;
-
-            h2 {
-              margin-top: 10px;
-            }
-
-            #status-container {
-              display: flex;
-              flex-direction: row;
-              margin-top: 10px;
-
-              #location {
-                align-items: center;
-                display: flex;
-                flex-direction: row;
-                margin-left: 20px;
-
-                img {
-                  margin: 0 10px;
-                }
-              }
-            }
+          img {
+            width: 2rem;
+            height: 2rem;
           }
         }
 
-        #review-container {
+        #details-content {
           display: flex;
           flex-direction: column;
-          order: 3;
-          margin-top: 2%;
-          align-self: flex-end;
+          padding: 50% 5rem;
 
-          #review-content {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #E0CC9F;
-            box-sizing: border-box;
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 10px;
-
-            a {
-              margin: 5px 20px;
-            }
-
-            p {
-              margin: 5px 20px;
-            }
-
-          }
-
-          #review-content::before {
-            //content: url("../image/beforereview.svg");
-            align-self: flex-start;
-
-          }
-
-          #review-content::after {
-            //content: url("../image/afterreview.svg");
-            align-self: flex-end;
-          }
-
-          #review-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 5px;
-          }
-        }
-
-      }
-    }
-
-    #bottom-container{
-      display: flex;
-      flex-direction: row;
-      margin-top: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-
-      #gallery-container {
-        display: flex;
-        flex-direction: column;
-        width: 45%;
-        margin: 0 2%;
-
-        #carousselle-container {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-
-          .carousselle-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2%;
-
-            img {
-              width: 100%;
-              height: 100%;
-              padding: 4%;
-            }
-          }
         }
       }
     }
 
-    footer {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2%;
-    }
   }
 
 }
