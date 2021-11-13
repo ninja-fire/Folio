@@ -1,8 +1,8 @@
 {
   "name": "Folio",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "version": "1.0.0",
   "description": "Manon Brousse Portfolio",
-  "main": "js/main.js",
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html"
@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/ninja-fire/Folio",
   "dependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel": "^2.0.0"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.1",
     "sass": "^1.43.4"
   }
 }
