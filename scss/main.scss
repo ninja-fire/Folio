@@ -10,9 +10,68 @@ body {
 
   #root-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    padding: 1.5% 1%;
+    height: 100vh;
+    width: 100vw;
+
+    #side-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      border-right: 1px solid #9C9F8D;
+      height: 100%;
+      padding: 1rem;
+
+      #menu-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0;
+
+        #text {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          div {
+            padding : 0.2rem;
+          }
+        }
+
+        #socials {
+          display: flex;
+          flex-direction: row;
+          padding: 0.5rem 0;
+
+          div {
+            padding: 0 0.5rem;
+            color: #9C9F8D;
+
+            img {
+              padding: 0.3rem;
+            }
+          }
+        }
+      }
+
+      #menu-center {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+        align-items: center;
+
+        p {
+          padding: 0.5rem;
+        }
+      }
+
+      #copyright {
+        justify-content: flex-end;
+      }
+    }
 
     #top-container {
       display: flex;

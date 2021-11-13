@@ -44,3 +44,13 @@
   }
 
 }
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+
+  .button {
+    padding: 0.2rem;
+  }
+
+}
