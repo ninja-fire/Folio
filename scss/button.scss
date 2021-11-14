@@ -1,33 +1,12 @@
 // Button
 
-.btnFlat {
-  background: #FFF6E1;
-  border: 1px solid #E4D1A7;
-  border-radius: 12px;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  outline: none !important;
-  padding: 15%;
-
-  img {
-    height: 100%;
-    width: 100%;
-  }
-
-}
-
-.btnFlat:active {
-  box-shadow: 0px 0px 6px 1px rgba(220, 124, 114, 0.25);
-}
-
 .CTA {
+  display: flex;
   background: #FBFCF7;
   border: 1px solid #B9D645;
-  border-radius: 30px;
-  width: 150px;
-  height: 60px;
-  display: flex;
+  border-radius: 1.875rem;
+  width: 10rem;
+  height: 3.75rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -36,8 +15,8 @@
   font-family: 'Satoshi', sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 18px;
-  line-height: 24px;
+  font-size:  1.125rem;
+  line-height: 1.5rem;
 
   img{
     padding-right: 0.5rem;
@@ -48,9 +27,9 @@
 .button-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   .button {
-    padding: 0.2rem;
+    padding: 0.5rem 0.2rem;
   }
-
 }

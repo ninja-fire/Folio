@@ -7,12 +7,14 @@ body {
   background: #FBFCF7;
   height: 100vh;
   width: 100vw;
+  font-size:  100%;
 
   #root-container {
     display: flex;
     flex-direction: row;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
 
     .main-content {
       display: flex;
@@ -26,6 +28,7 @@ body {
       justify-content: space-between;
       border-right: 1px solid #9C9F8D;
       height: 100%;
+      width: 27%;
       padding: 1rem;
 
       #menu-top {
@@ -63,6 +66,12 @@ body {
             }
           }
         }
+
+        .button-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
       }
 
       #menu-center {
@@ -70,6 +79,7 @@ body {
         flex-direction: column;
         padding: 1rem 0;
         align-items: center;
+        text-align: center;
 
         p {
           padding: 0.5rem;
@@ -78,6 +88,7 @@ body {
 
       #copyright {
         justify-content: flex-end;
+        text-align: center;
 
         a:link {
           text-decoration: underline;
@@ -89,44 +100,67 @@ body {
       }
     }
 
-    #center {
+    #main {
+      border-right: 1px solid #9C9F8D;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      width: 30%;
 
-      #main {
-        border-right: 1px solid #9C9F8D;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 5rem;
+      .main-content {
+        padding: 1rem 0;
 
-      }
-
-      #details {
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-
-        #switch {
-          display: flex;
-          flex-direction: row;
-          justify-content: end;
-
-          img {
-            width: 2rem;
-            height: 2rem;
-          }
+        h1 {
+          padding: 0.5rem 0;
         }
 
-        #details-content {
-          display: flex;
-          flex-direction: column;
-          padding: 50% 5rem;
+        h2 {
+          padding: 0.2rem 0;
 
+        }
+      }
+
+    }
+
+    #details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      width: 30%;
+
+      #switch {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        img {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      #details-content {
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        padding: 1rem 0;
+        align-content: center;
+
+        h2 {
+          padding: 0.5rem 0;
+        }
+
+        .date {
+          color: #9C9F8D;
+          padding: 0.2rem 0;
         }
       }
     }
-
   }
 
 }
