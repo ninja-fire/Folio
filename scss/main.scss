@@ -96,8 +96,9 @@ body {
         justify-content: flex-end;
         text-align: center;
 
-        a:link {
+        a {
           text-decoration: underline;
+          color: theme-colors-light(lightPlaceholder);
         }
 
         a:hover {
