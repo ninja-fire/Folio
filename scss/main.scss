@@ -11,12 +11,30 @@ body {
   width: 100vw;
   font-size:  100%;
 
+  div {
+    display: flex;
+
+  }
+
   #root-container {
     display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
-    justify-content: space-between;
+    justify-content: start;
+
+    #switch {
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+
+      svg {
+        padding: 0 0.5rem;
+      }
+    }
 
     .main-content {
       display: flex;
@@ -113,7 +131,8 @@ body {
       flex-direction: column;
       justify-content: center;
       height: 100%;
-      width: 30%;
+      padding: 0 4rem;
+      //width: 30%;
 
       .main-content {
         padding: 1rem 0;
@@ -131,24 +150,11 @@ body {
     }
 
     #details {
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: center;
       height: 100%;
       width: 30%;
-
-      #switch {
-        display: flex;
-        flex-direction: row;
-        justify-content: end;
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-
-        svg {
-          padding: 0 0.5rem;
-        }
-      }
 
       #details-content {
         display: flex;
@@ -167,7 +173,80 @@ body {
         }
       }
     }
+
+    #mobile-menu {
+      display: none;
+      width: 100%;
+      height: 10%;
+      position: sticky;
+      background: theme-colors-light(lightBackground);
+      border-top: 1px solid theme-colors-light(lightPlaceholder);
+      bottom: 0;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
   }
+
+
+}
+
+$breakpoint-tablet: 960px;
+@media (max-width: $breakpoint-tablet) {
+
+  body {
+    #root-container {
+
+      #side-menu {
+        width: 45%;
+      }
+
+      #main {
+        border-right: none;
+      }
+
+    }
+  }
+}
+
+$breakpoint-tablet: 780px;
+@media (max-width: $breakpoint-tablet) {
+
+  body {
+    #root-container {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      #side-menu {
+        width: 100%;
+        height: 91%;
+        border-bottom: 1px solid theme-colors-light(lightPlaceholder);
+        border-right: none;
+
+        #menu-top {
+
+          .button-container {
+            display: none;
+          }
+        }
+
+        #copyright {
+          padding: 1rem 0;
+        }
+      }
+
+      #main {
+        border-right: none;
+      }
+
+      #mobile-menu {
+        display: flex;
+      }
+    }
+
+  }
+
 
 }
 
