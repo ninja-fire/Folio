@@ -1,0 +1,53 @@
+//Primary
+$color-primary: #B9D645;
+$color-primary-dark: #505736;
+$color-primary-pale: #CCDD89;
+
+$theme-colors-primary: (
+  primary: $color-primary,
+  primaryDark: $color-primary-dark,
+  primaryPale: $color-primary-pale,
+);
+
+@function theme-colors-primary($key) {
+  @return map-get($theme-colors-primary, $key);
+}
+
+
+//Light
+$color-light-background: #FBFCF7;
+$color-light-elevation: #F2F6E1;
+$color-light-label: #110F34;
+$color-light-caption: #232147;
+$color-light-placeholder: #9C9F8D;
+
+$theme-colors-light: (
+  lightBackground: $color-light-background,
+  lightElevation: $color-light-elevation,
+  lightLabel: $color-light-label,
+  lightCaption: $color-light-caption,
+  lightPlaceholder: $color-light-placeholder,
+);
+
+@function theme-colors-light($key) {
+  @return map-get($theme-colors-light, $key);
+}
+
+//Dark
+$color-dark-background: #110F34;
+$color-dark-elevation: #232147;
+$color-dark-label: #FBFCF7;
+$color-dark-caption: #F2F6E1;
+$color-dark-placeholder: #9C9F8D;
+
+$theme-colors-dark: (
+  darkBackground: $color-dark-background,
+  darkElevation: $color-dark-elevation,
+  darkLabel: $color-dark-label,
+  darkCaption: $color-dark-caption,
+  darkPlaceholder: $color-dark-placeholder,
+);
+
+@function theme-colors-dark($key) {
+  @return map-get($theme-colors-dark, $key);
+}
