@@ -16,14 +16,26 @@ body {
   }
 
   #root-container {
-    display: flex;
     flex-direction: row;
     height: 100%;
     width: 100%;
     justify-content: start;
 
+    .link {
+      justify-content: flex-end;
+      text-align: center;
+
+      a {
+        text-decoration: underline;
+        color: theme-colors-light(lightPlaceholder);
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
     #switch {
-      display: flex;
       flex-direction: row;
       justify-content: end;
       position: absolute;
@@ -32,6 +44,7 @@ body {
 
       svg {
         padding: 0 0.5rem;
+        cursor: pointer;
 
         &:hover {
           fill: rgba(156, 159, 141, 0.2);
@@ -40,12 +53,10 @@ body {
     }
 
     .main-content {
-      display: flex;
       flex-direction: column;
     }
 
     #side-menu {
-      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
@@ -55,14 +66,12 @@ body {
       padding: 1rem;
 
       #menu-top {
-        display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 1rem 0;
 
         #text {
-          display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
@@ -76,7 +85,6 @@ body {
           }
 
           div {
-            display: flex;
             flex-direction: column;
             align-items: center;
             padding : 0.2rem;
@@ -84,7 +92,6 @@ body {
         }
 
         #socials {
-          display: flex;
           flex-direction: row;
           padding: 0.5rem 0;
 
@@ -99,14 +106,12 @@ body {
         }
 
         .button-container {
-          display: flex;
           flex-direction: row;
           justify-content: center;
         }
       }
 
       #menu-center {
-        display: flex;
         flex-direction: column;
         padding: 1rem 0;
         align-items: center;
@@ -121,24 +126,10 @@ body {
         }
       }
 
-      #copyright {
-        justify-content: flex-end;
-        text-align: center;
-
-        a {
-          text-decoration: underline;
-          color: theme-colors-light(lightPlaceholder);
-        }
-
-        a:hover {
-          text-decoration: none;
-        }
-      }
     }
 
     #main {
       border-right: 1px solid theme-colors-light(lightPlaceholder);
-      display: flex;
       flex-direction: column;
       justify-content: center;
       height: 100%;
@@ -161,7 +152,6 @@ body {
     }
 
     .details {
-      //display: flex;
       flex-direction: column;
       justify-content: center;
       height: 100%;
@@ -171,11 +161,17 @@ body {
 
       .details-content {
         flex-direction: column;
-        width: 75%;
+        width: 80%;
         padding: 1rem 0;
         align-content: center;
 
         h2 {
+          padding: 0.5rem 0;
+        }
+
+        .dev {
+          flex-direction: column;
+          align-items: start;
           padding: 0.5rem 0;
         }
 
@@ -210,7 +206,7 @@ body {
       }
 
       #abricotDetails {
-        display: none;
+        display: flex;
       }
     }
 
@@ -256,8 +252,8 @@ $breakpoint-tablet: 960px;
   }
 }
 
-$breakpoint-tablet: 780px;
-@media (max-width: $breakpoint-tablet) {
+$breakpoint-mobile: 780px;
+@media (max-width: $breakpoint-mobile) {
 
   body {
 

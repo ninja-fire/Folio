@@ -31,6 +31,17 @@
   align-items: center;
 }
 
+.body-emphasize {
+  color: theme-colors-light(lightLabel);
+  font-family: 'Satoshi', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.875rem;
+  line-height: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
 .caption {
   color: theme-colors-light(lightLabel);
   font-family: 'Satoshi', sans-serif;
