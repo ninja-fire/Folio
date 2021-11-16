@@ -9,11 +9,10 @@ body {
   background: theme-colors-light(lightBackground);
   height: 100vh;
   width: 100vw;
-  font-size:  100%;
+  font-size: 100%;
 
   div {
     display: flex;
-
   }
 
   #root-container {
@@ -33,6 +32,10 @@ body {
 
       svg {
         padding: 0 0.5rem;
+
+        &:hover {
+          fill: rgba(156, 159, 141, 0.2);
+        }
       }
     }
 
@@ -48,7 +51,7 @@ body {
       justify-content: space-between;
       border-right: 1px solid theme-colors-light(lightPlaceholder);
       height: 100%;
-      width: 27%;
+      width: 30%;
       padding: 1rem;
 
       #menu-top {
@@ -63,6 +66,14 @@ body {
           flex-direction: column;
           align-items: center;
           text-align: center;
+
+          #profilePicture {
+
+            img {
+              width: 15rem;
+              height: 15rem;
+            }
+          }
 
           div {
             display: flex;
@@ -132,7 +143,7 @@ body {
       justify-content: center;
       height: 100%;
       padding: 0 4rem;
-      //width: 30%;
+      width: 30%;
 
       .main-content {
         padding: 1rem 0;
@@ -149,15 +160,16 @@ body {
 
     }
 
-    #details {
-      display: none;
+    .details {
+      //display: flex;
       flex-direction: column;
       justify-content: center;
       height: 100%;
-      width: 30%;
+      width: 40%;
+      padding: 0 4rem;
+      align-items: center;
 
-      #details-content {
-        display: flex;
+      .details-content {
         flex-direction: column;
         width: 75%;
         padding: 1rem 0;
@@ -171,6 +183,34 @@ body {
           color: theme-colors-light(lightPlaceholder);
           padding: 0.2rem 0;
         }
+      }
+
+      #lectraDetails {
+        display: none;
+      }
+
+      #DCLDetails {
+        display: none;
+      }
+
+      #premiaDetails {
+        display: none;
+      }
+
+      #varessDetails {
+        display: none;
+      }
+
+      #freelanceDetails {
+        display: none;
+      }
+
+      #metagameDetails {
+        display: none;
+      }
+
+      #abricotDetails {
+        display: none;
       }
     }
 
@@ -196,6 +236,7 @@ $breakpoint-tablet: 960px;
 @media (max-width: $breakpoint-tablet) {
 
   body {
+
     #root-container {
 
       #side-menu {
@@ -204,6 +245,11 @@ $breakpoint-tablet: 960px;
 
       #main {
         border-right: none;
+        width: 100%;
+      }
+
+      .details {
+        display: none;
       }
 
     }
@@ -214,6 +260,7 @@ $breakpoint-tablet: 780px;
 @media (max-width: $breakpoint-tablet) {
 
   body {
+
     #root-container {
       flex-wrap: wrap;
       justify-content: center;
@@ -238,6 +285,11 @@ $breakpoint-tablet: 780px;
 
       #main {
         border-right: none;
+        height: 91%;
+      }
+
+      .details {
+        display: none;
       }
 
       #mobile-menu {
