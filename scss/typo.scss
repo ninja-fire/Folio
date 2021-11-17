@@ -1,8 +1,8 @@
-@import "colorTheme";
+@import "style";
 // Typography
 
 .title {
-  color: theme-colors-light(lightLabel);
+  color: var(--color-label);
   font-family: 'Satoshi', sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -21,7 +21,7 @@
 }
 
 .body {
-  color: theme-colors-light(lightLabel);
+  color: var(--color-label);
   font-family: 'Satoshi', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -32,7 +32,7 @@
 }
 
 .body-emphasize {
-  color: theme-colors-light(lightLabel);
+  color: var(--color-label);
   font-family: 'Satoshi', sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -43,7 +43,7 @@
 }
 
 .caption {
-  color: theme-colors-light(lightLabel);
+  color: var(--color-caption);
   font-family: 'Satoshi', sans-serif;
   font-style: normal;
   font-weight: normal;

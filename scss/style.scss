@@ -1,0 +1,37 @@
+//Primary
+$color-primary: #B9D645;
+$color-primary-dark: #505736;
+$color-primary-pale: #CCDD89;
+$color-placeholder: #9C9F8D;
+
+$theme-colors-primary: (
+  primary: $color-primary,
+  primaryDark: $color-primary-dark,
+  primaryPale: $color-primary-pale,
+  placeholder: $color-placeholder,
+);
+
+@function theme-colors-primary($key) {
+  @return map-get($theme-colors-primary, $key);
+}
+
+//Dark & Light Mode
+$color-white: #FBFCF7;
+$color-white-dark: #F2F6E1;
+$color-blue-dark: #110F34;
+$color-blue-light: #232147;
+
+:root {
+  --color-page-background: #{$color-white};
+  --color-elevation: #{$color-white-dark};
+  --color-label: #{$color-blue-dark};
+  --color-caption: #{$color-blue-light};
+}
+
+.dark {
+  --color-page-background: #{$color-blue-dark};
+  --color-elevation: #{$color-blue-light};
+  --color-label: #{$color-white};
+  --color-caption: #{$color-white-dark};
+}
+

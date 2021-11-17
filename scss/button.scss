@@ -1,10 +1,10 @@
-@import "colorTheme";
+@import "style";
 
 // Button
 
 .CTA {
   display: flex;
-  background: theme-colors-light(lightBackground);
+  background: var(--color-page-background);
   border: 1px solid theme-colors-primary(primary);
   border-radius: 1.875rem;
   width: 10rem;
@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
 
-  color: theme-colors-light(lightLabel);
+  color: var(--color-label);
   font-family: 'Satoshi', sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -21,7 +21,7 @@
   line-height: 1.5rem;
 
   &:hover {
-    background: theme-colors-light(lightElevation);
+    background: var(--color-elevation);
   }
 
   img{

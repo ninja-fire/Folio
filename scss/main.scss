@@ -1,12 +1,11 @@
 @import "css-reset";
-@import "colorTheme";
+@import "style";
 @import "typo";
-@import "assets";
 @import "button";
 
 
 body {
-  background: theme-colors-light(lightBackground);
+  background: var(--color-page-background);
   height: 100vh;
   width: 100vw;
   font-size: 100%;
@@ -27,12 +26,17 @@ body {
 
       a {
         text-decoration: underline;
-        color: theme-colors-light(lightPlaceholder);
+        color: theme-colors-primary(placeholder);
       }
 
       a:hover {
         text-decoration: none;
       }
+    }
+
+    .neutral{
+      background: none;
+      border: none;
     }
 
     #switch {
@@ -47,8 +51,12 @@ body {
         cursor: pointer;
 
         &:hover {
-          fill: rgba(156, 159, 141, 0.2);
+          fill: var(--color-elevation);
         }
+      }
+
+      #sunBtn {
+        display: none;
       }
     }
 
@@ -60,7 +68,7 @@ body {
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      border-right: 1px solid theme-colors-light(lightPlaceholder);
+      border-right: 1px solid theme-colors-primary(placeholder);
       height: 100%;
       width: 30%;
       padding: 1rem;
@@ -97,7 +105,7 @@ body {
 
           div {
             padding: 0 0.5rem;
-            color: theme-colors-light(lightPlaceholder);
+            color: theme-colors-primary(placeholder);
 
             img {
               padding: 0.3rem;
@@ -119,17 +127,14 @@ body {
 
         p {
           padding: 0.5rem;
-        }
-
-        .subtitle {
-          color: theme-colors-primary(primaryDark)
+          color: var(--color-caption);
         }
       }
 
     }
 
     #main {
-      border-right: 1px solid theme-colors-light(lightPlaceholder);
+      border-right: 1px solid theme-colors-primary(placeholder);
       flex-direction: column;
       justify-content: center;
       height: 100%;
@@ -176,7 +181,7 @@ body {
         }
 
         .date {
-          color: theme-colors-light(lightPlaceholder);
+          color: theme-colors-primary(placeholder);
           padding: 0.2rem 0;
         }
       }
@@ -215,8 +220,8 @@ body {
       width: 100%;
       height: 10%;
       position: sticky;
-      background: theme-colors-light(lightBackground);
-      border-top: 1px solid theme-colors-light(lightPlaceholder);
+      background: var(--color-page-background);
+      border-top: 1px solid theme-colors-primary(placeholder);
       bottom: 0;
       align-items: center;
       justify-content: center;
@@ -264,7 +269,7 @@ $breakpoint-mobile: 780px;
       #side-menu {
         width: 100%;
         height: 91%;
-        border-bottom: 1px solid theme-colors-light(lightPlaceholder);
+        border-bottom: 1px solid theme-colors-primary(placeholder);
         border-right: none;
 
         #menu-top {
