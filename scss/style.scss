@@ -26,6 +26,7 @@ $color-blue-light: #232147;
   --color-elevation: #{$color-white-dark};
   --color-label: #{$color-blue-dark};
   --color-caption: #{$color-blue-light};
+  --color-moon: rgba(0, 0, 0, 0);
 }
 
 .dark {
@@ -33,5 +34,6 @@ $color-blue-light: #232147;
   --color-elevation: #{$color-blue-light};
   --color-label: #{$color-white};
   --color-caption: #{$color-white-dark};
+  --color-moon: #{$color-primary-pale};
 }
 

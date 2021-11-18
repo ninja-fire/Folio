@@ -53,7 +53,9 @@ body {
         &:hover {
           fill: var(--color-elevation);
         }
+
       }
+    }
 
     .main-content {
       flex-direction: column;
@@ -147,6 +149,18 @@ body {
           padding: 0.2rem 0;
 
         }
+
+        .job {
+          cursor: pointer;
+
+          &:hover {
+            color: theme-colors-primary(primaryPale);
+          }
+
+          &.selected {
+            color: theme-colors-primary(placeholder);
+          }
+        }
       }
 
     }
@@ -167,6 +181,7 @@ body {
 
         h2 {
           padding: 0.5rem 0;
+
         }
 
         .dev {
