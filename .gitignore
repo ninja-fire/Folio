@@ -3,6 +3,7 @@ node_modules
 /dist
 /.cache
 /.parcel-cache
+/.parcel-cache/data.mdb
 
 # Log files
 npm-debug.log*
