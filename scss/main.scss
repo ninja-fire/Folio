@@ -20,6 +20,10 @@ body {
     width: 100%;
     justify-content: start;
 
+    .visible {
+      display: none;
+    }
+
     .link {
       justify-content: flex-end;
       text-align: center;
@@ -261,6 +265,7 @@ $breakpoint-tablet: 960px;
 
       .details {
         display: none;
+
       }
 
     }
