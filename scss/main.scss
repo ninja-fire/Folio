@@ -20,6 +20,10 @@ body {
     width: 100%;
     justify-content: start;
 
+    .visible {
+      display: none;
+    }
+
     .link {
       justify-content: flex-end;
       text-align: center;
@@ -173,6 +177,10 @@ body {
       padding: 0 4rem;
       align-items: center;
 
+      #backDetails {
+        display: none;
+      }
+
       .details-content {
         flex-direction: column;
         width: 80%;
@@ -261,6 +269,16 @@ $breakpoint-tablet: 960px;
 
       .details {
         display: none;
+        align-items: start;
+        width: 100%;
+
+        #backDetails {
+          display: flex;
+        }
+
+        #detailsList {
+          justify-content: center;
+        }
       }
 
     }
@@ -301,6 +319,8 @@ $breakpoint-mobile: 780px;
 
       .details {
         display: none;
+        height: 91%;
+
       }
 
       #mobile-menu {
