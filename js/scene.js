@@ -198,10 +198,26 @@ export function createScene(container){
       // gltf.scene.children[3].children[1].children[5].rotateX(0, 0, 0);
       // gltf.scene.children[3].children[1].children[5].rotation.setFromVector3(new THREE.Vector3((Math.PI / 20) * (offsetY * 8 - 4), (Math.PI / 20) * (offsetX * 8 - 4), -(Math.PI / 20) * (offsetX * 8 - 4)) );
      // debugger
-      gltf.scene.children[4].children[0].children[0].lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 5, 10))
-      gltf.scene.children[4].children[0].children[1].lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
-      gltf.scene.children[4].children[0].children[2].children[0].lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
-      gltf.scene.children[4].children[0].children[3].lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
+      // backup original rotation
+      const bones = [
+        gltf.scene.children[4].children[0].children[0],
+        gltf.scene.children[4].children[0].children[1],
+        gltf.scene.children[4].children[0].children[2].children[0],
+        gltf.scene.children[4].children[0].children[3],
+      ]
+
+      bones.forEach(bone => {
+        // const startRotation = bone.quaternion.clone();
+        // bone.lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 5, 10));
+        // const endRotation = bone.quaternion.clone();
+        // bone.quaternion.copy(startRotation);
+        // new TWEEN.Tween(bone.quaternion).to(endRotation, 2000).start();
+        bone.lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 5, 10))
+      })
+
+      // gltf.scene.children[4].children[0].children[1].clone().applyQuaternion(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
+      // gltf.scene.children[4].children[0].children[2].clone().applyQuaternion[0].lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
+      // gltf.scene.children[4].children[0].children[3].clone().applyQuaternion(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
       // gltf.scene.children[4].children[0].children[3].children[0].lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 3, 10))
 
       // const rotation = new THREE.Euler( 60 * offsetY - 45, 0, 0, 'XYZ' );
