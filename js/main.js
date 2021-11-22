@@ -6,7 +6,6 @@ function Main(){
   const mqTablet = window.matchMedia('(max-width: 960px)').matches;
 
   darkThemeToggler();
-  createScene(document.getElementById('profilePicture'));
 
   if(mqTablet) {
 
@@ -17,6 +16,7 @@ function Main(){
     detailDesktop();
 
   }
+  createScene(document.getElementById('profilePicture'));
 
 }
 

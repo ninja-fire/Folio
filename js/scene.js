@@ -2,16 +2,19 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const michelineBusteUrl = new URL('/image/michelineBuste.glb', import.meta.url);
+THREE.Cache.enabled = true;
 
 export function createScene(container){
 
   // Scene
   const scene = new THREE.Scene();
+  // Render
   const renderer = new THREE.WebGLRenderer({
     precision: "highp",
     alpha: true,
     antialias: true,
   });
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize( 256, 256 );
   renderer.domElement.style.border = '1px solid black';
   renderer.domElement.style['border-radius'] = '50%';
@@ -21,9 +24,9 @@ export function createScene(container){
   const generator = new THREE.PMREMGenerator( renderer );
   const rt = generator.fromScene( scene );
   scene.environment = rt.texture;
-  container.appendChild( renderer.domElement );
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFShadowMap;//THREE.BasicShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  container.appendChild(renderer.domElement);
   // Camera
   const camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 1000 );
   camera.position.set( 0, 0.3, 1.5 );
@@ -35,6 +38,7 @@ export function createScene(container){
   controls.maxPolarAngle = Math.PI/1.8;
   controls.minPolarAngle = Math.PI/6;
   controls.autoRotate = true;
+  controls.enablePan = false;
 
   // Light
   // const light = new THREE.HemisphereLight( 0x3D4143, 0x3D4143, 3 );
@@ -61,6 +65,7 @@ export function createScene(container){
   // const box = new THREE.BoxHelper( object, 0xffff00 );
   // scene.add( box );
 
+  // Lights
   const directionalLightFront = new THREE.DirectionalLight( 0xd1d1d1, 2.5 );
   directionalLightFront.position.set(-5, 1, 50)
   scene.add(directionalLightFront);
@@ -78,13 +83,21 @@ export function createScene(container){
   scene.add(directionalLightRight);
 
   // Load gltf
-  const loader = new GLTFLoader();
+  const loadingManager = new THREE.LoadingManager( () => {
+    const loadingScreen = document.getElementById( 'loading-screen' );
+    loadingScreen.classList.add( 'fade-out' );
+    loadingScreen.addEventListener( 'transitionend', (event) => {
+      const element = event.target;
+      element.remove();
+    });
+  });
+  const loader = new GLTFLoader(loadingManager);
   loader.load(
     michelineBusteUrl.pathname,
     function ( gltf ) {
       gltf.scene.position.set(0, -0.07, 0 );
       scene.add( gltf.scene );
-      renderer.render( scene, camera );
+      animate();
     },
     function ( xhr ) {
       // console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
@@ -96,10 +109,7 @@ export function createScene(container){
     }
   );
 
-  // Render
-  renderer.render( scene, camera );
-  controls.update();
-
+  // Render loop
   function animate() {
 
     requestAnimationFrame( animate );
@@ -107,5 +117,4 @@ export function createScene(container){
     renderer.render( scene, camera );
 
   }
-  animate();
 }
