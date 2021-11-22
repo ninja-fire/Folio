@@ -1,168 +1,335 @@
 @import "css-reset";
+@import "style";
 @import "typo";
-@import "assets";
 @import "button";
 
+
 body {
-  background-color: #FFF6E1;
+  background: var(--color-page-background);
   height: 100vh;
   width: 100vw;
+  font-size: 100%;
+
+  div {
+    display: flex;
+  }
 
   #root-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 1.5% 1%;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: start;
 
-    #top-container {
-      display: flex;
+    .visible {
+      display: none;
+    }
+
+    .link {
+      justify-content: flex-end;
+      text-align: center;
+
+      a {
+        text-decoration: underline;
+        color: theme-colors-primary(placeholder);
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
+    .neutral{
+      background: none;
+      border: none;
+    }
+
+    #switch {
       flex-direction: row;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
+      justify-content: end;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
 
-      #left-container {
-        display: flex;
-        flex-direction: column;
-        width: 45%;
-        flex-wrap: wrap;
-        margin: 0 2%;
+      svg {
+        padding: 0 0.5rem;
+        cursor: pointer;
 
-        #prez-container {
-          display: flex;
-          flex-direction: row;
-          order: 1;
-          flex-wrap: wrap;
-          //align-items: center;
-
-          #icon-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px;
-
-          }
-
-          #prez-txt-container {
-            display: flex;
-            flex-direction: column;
-            align-self: center;
-
-            h2 {
-              margin-top: 10px;
-            }
-
-            #status-container {
-              display: flex;
-              flex-direction: row;
-              margin-top: 10px;
-
-              #location {
-                align-items: center;
-                display: flex;
-                flex-direction: row;
-                margin-left: 20px;
-
-                img {
-                  margin: 0 10px;
-                }
-              }
-            }
-          }
-        }
-
-        #review-container {
-          display: flex;
-          flex-direction: column;
-          order: 3;
-          margin-top: 2%;
-          align-self: flex-end;
-
-          #review-content {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #E0CC9F;
-            box-sizing: border-box;
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 10px;
-
-            a {
-              margin: 5px 20px;
-            }
-
-            p {
-              margin: 5px 20px;
-            }
-
-          }
-
-          #review-content::before {
-            content: url("../image/beforereview.svg");
-            align-self: flex-start;
-
-          }
-
-          #review-content::after {
-            content: url("../image/afterreview.svg");
-            align-self: flex-end;
-          }
-
-          #review-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 5px;
-          }
+        &:hover {
+          fill: var(--color-elevation);
         }
 
       }
     }
 
-    #bottom-container{
-      display: flex;
-      flex-direction: row;
-      margin-top: 20px;
-      flex-wrap: wrap;
+    .main-content {
+      flex-direction: column;
+    }
+
+    #side-menu {
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      border-right: 1px solid theme-colors-primary(placeholder);
+      height: 100%;
+      width: 30%;
+      padding: 1rem;
 
-      #gallery-container {
-        display: flex;
+      #menu-top {
         flex-direction: column;
-        width: 45%;
-        margin: 0 2%;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 0;
 
-        #carousselle-container {
-          display: flex;
-          flex-direction: row;
+        #text {
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
+          text-align: center;
 
-          .carousselle-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2%;
+          #profilePicture {
 
             img {
-              width: 100%;
-              height: 100%;
-              padding: 4%;
+              width: 15rem;
+              height: 15rem;
+            }
+          }
+
+          div {
+            flex-direction: column;
+            align-items: center;
+            padding : 0.2rem;
+          }
+        }
+
+        #socials {
+          flex-direction: row;
+          padding: 0.5rem 0;
+
+          div {
+            padding: 0 0.5rem;
+            color: theme-colors-primary(placeholder);
+
+            img {
+              padding: 0.3rem;
             }
           }
         }
+
+        .button-container {
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+
+      #menu-center {
+        flex-direction: column;
+        padding: 1rem 0;
+        align-items: center;
+        text-align: center;
+
+        p {
+          padding: 0.5rem;
+          color: var(--color-caption);
+        }
+      }
+
+    }
+
+    #main {
+      border-right: 1px solid theme-colors-primary(placeholder);
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 0 4rem;
+      width: 30%;
+
+      .main-content {
+        padding: 1rem 0;
+
+        h1 {
+          padding: 0.5rem 0;
+        }
+
+        h2 {
+          padding: 0.2rem 0;
+
+        }
+
+        .job {
+          cursor: pointer;
+
+          &:hover {
+            color: theme-colors-primary(primaryPale);
+          }
+
+          &.selected {
+            color: theme-colors-primary(placeholder);
+          }
+        }
+      }
+
+    }
+
+    .details {
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      width: 40%;
+      padding: 0 4rem;
+      align-items: center;
+
+      #backDetails {
+        display: none;
+      }
+
+      .details-content {
+        flex-direction: column;
+        width: 80%;
+        padding: 1rem 0;
+        align-content: center;
+
+        h2 {
+          padding: 0.5rem 0;
+
+        }
+
+        .dev {
+          flex-direction: column;
+          align-items: start;
+          padding: 0.5rem 0;
+        }
+
+        .date {
+          color: theme-colors-primary(placeholder);
+          padding: 0.2rem 0;
+        }
+      }
+
+      #lectraDetails {
+        display: none;
+      }
+
+      #DCLDetails {
+        display: none;
+      }
+
+      #premiaDetails {
+        display: none;
+      }
+
+      #varessDetails {
+        display: none;
+      }
+
+      #freelanceDetails {
+        display: none;
+      }
+
+      #metagameDetails {
+        display: none;
+      }
+
+      #abricotDetails {
+        display: none;
       }
     }
 
-    footer {
-      display: flex;
-      justify-content: center;
+    #mobile-menu {
+      display: none;
+      width: 100%;
+      height: 10%;
+      position: sticky;
+      background: var(--color-page-background);
+      border-top: 1px solid theme-colors-primary(placeholder);
+      bottom: 0;
       align-items: center;
-      margin-top: 2%;
+      justify-content: center;
+      z-index: 100;
+    }
+
+  }
+
+
+}
+
+$breakpoint-tablet: 960px;
+@media (max-width: $breakpoint-tablet) {
+
+  body {
+
+    #root-container {
+
+      #side-menu {
+        width: 45%;
+      }
+
+      #main {
+        border-right: none;
+        width: 100%;
+      }
+
+      .details {
+        display: none;
+        align-items: start;
+        width: 100%;
+
+        #backDetails {
+          display: flex;
+        }
+
+        #detailsList {
+          justify-content: center;
+        }
+      }
+
     }
   }
+}
+
+$breakpoint-mobile: 780px;
+@media (max-width: $breakpoint-mobile) {
+
+  body {
+
+    #root-container {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      #side-menu {
+        width: 100%;
+        height: 91%;
+        border-bottom: 1px solid theme-colors-primary(placeholder);
+        border-right: none;
+
+        #menu-top {
+
+          .button-container {
+            display: none;
+          }
+        }
+
+        #copyright {
+          padding: 1rem 0;
+        }
+      }
+
+      #main {
+        border-right: none;
+        height: 91%;
+      }
+
+      .details {
+        display: none;
+        height: 91%;
+
+      }
+
+      #mobile-menu {
+        display: flex;
+      }
+    }
+
+  }
+
 
 }
 

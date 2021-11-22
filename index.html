@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poller+One&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200..900&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901,1,2&display=swap"
+        rel="stylesheet">
 
-  <title>Portfolio Manon Brousse UI Designer</title>
+  <title>Manon Brousse Creative Designer</title>
 
 </head>
 
@@ -15,215 +15,306 @@
 
 <div id="root-container">
 
-<!--  Top Container-->
-  <div id="top-container">
+  <div id="switch">
+    <button id="moonBtn" class="neutral">
+      <svg id="moon" width="2.5rem" height="2.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M13.0629 22C16.1473 22 18.9644 20.5967 20.8307 18.2972C21.1068 17.957 20.8058 17.4601 20.3791 17.5413C15.5274 18.4653 11.072 14.7454 11.072 9.84781C11.072 7.02664 12.5822 4.43238 15.0367 3.03555C15.4151 2.82023 15.3199 2.2466 14.89 2.16719C14.2873 2.05605 13.6757 2.00009 13.0629 2C7.54298 2 3.06287 6.47309 3.06287 12C3.06287 17.5199 7.53595 22 13.0629 22Z"
+          stroke="#9C9F8D"/>
+      </svg>
+    </button>
+  </div>
 
-<!--    Left Container-->
-    <div id="left-container">
-      <!--    Presentation container-->
-      <div id="prez-container">
-
-        <img class="imgProfile" src="image/michelineFringuee.png">
-
-        <div id="icon-container">
-          <a href="mailto:mannbrs@gmail.com" class="btnFlat">
-            <img
-              src="image/email.svg"
-              alt="email icon"
-              height="18px"
-              width="30px" />
-          </a>
-          <a href="https://calendly.com/mannbrs/30min"  target="_blank" class="btnFlat">
-            <img
-              src="image/calendar.svg"
-              alt="calendar icon"
-              height="30px"
-              width="30px" />
-          </a>
-        </div>
-
-        <div id="prez-txt-container">
-
-          <h1>Manon Brousse</h1>
-          <h2>Creative UI Designer</h2>
-
-          <div id="status-container">
-            <div id="active-tag" class="tag green">active</div>
-            <div id="location">
-              <img
-                src="image/location.svg"
-                alt="location icon"
-                height="25px"
-                width="20px" />
-              <div class="subtitle">France</div>
-            </div>
-          </div>
-        </div>
+  <div id="side-menu">
+    <div id="menu-top">
+      <div id="text">
+        <div id="profilePicture"><img alt="profile picture" src="image/profilePicture.png"></div>
+        <div><h1 class="title">Manon Brousse <img alt="" src="image/check.svg"></h1></div>
+        <div><p class="body">“Design systems are my kings, Figma is my sword”</p></div>
+      </div>
+      <div id="socials">
+        <div class="body"><img alt="discord logo" src="image/discord.svg"> ninjafire#2987</div>
+        <div class="body"><img alt="twitter logo" src="image/twitter.svg"> @ninjafire_</div>
       </div>
 
-      <!--    Review Container-->
-      <div id="review-container">
-        <h3>Reviews</h3>
-        <div id="review-content">
-          <a>Name Surname, Job Company</a>
-          <p>Utque aegrum corpus quassari etiam levibus solet offensis, ita animus eius angustus et tener, quicquid increpuisset, ad salutis suae dispendium existimans factum aut cogitatum, insontium caedibus fecit victoriam luctuosam.</p>
+      <div class="button-container">
+        <div class="button">
+          <a href="mailto:mannbrs@gmail.com" class="CTA"><img alt="mail to" src="image/mail.svg">
+            e-mail
+          </a>
         </div>
-        <div id="review-icon">
-          <img
-            src="image/review-icon.svg"
-            alt="review icon"
-            height="10px"
-            width="36px" />
+        <div class="button">
+          <a href="https://calendly.com/mannbrs/30min" target="_blank" class="CTA"><img alt="book meeting"
+                                                                                        src="image/calendar.svg">
+            book
+          </a>
         </div>
       </div>
+    </div>
+    <div id="menu-center">
+      <p class="subtitle">Landing Page Design</p>
+      <p class="subtitle">Application Design</p>
+      <p class="subtitle">Design system implementation</p>
+      <p class="subtitle">Interactive mockups</p>
+    </div>
+    <div class="link body" ><a href="https://github.com/ninja-fire/Folio" about="_blank">Made with 💛 by
+      NinjaFire</a></div>
+  </div>
 
+  <div id="main">
+    <div class="main-content">
+      <h1 class="title">Currently</h1>
+      <h2 class="subtitle job" id="abricot">Product Designer at Abricot Studio</h2>
+      <h2 class="subtitle job" id="metagame">Metagame Designer Guild</h2>
+      <h2 class="subtitle job" id="freelance">Freelance UX/UI Designer</h2>
     </div>
 
-<!--    Activity Container-->
-    <div class="card">
-      <h3>Activity</h3>
-      <div id="current-container">
-          <div class="caption">current</div>
-          <div class="feedCard">
-            <div class="text-container">
-              <a>Metagame UI Design</a>
-              <p>Decentralized social experiment that gamifies good actions</p>
-            </div>
-            <div class="tag yellow">
-              <div>open</div>
-            </div>
-          </div>
-        <div class="feedCard">
-            <div class="text-container">
-              <a>Premia Finance</a>
-              <p>Decentralized social experiment that gamifies good actions</p>
-            </div>
-            <div class="tag yellow">
-              <div>open</div>
-            </div>
+    <div class="main-content">
+      <h1 class="title">Past</h1>
+      <h2 class="subtitle job" id="varess">Varess UX/UI</h2>
+      <h2 class="subtitle job" id="premia">Premia UI Designer</h2>
+      <h2 class="subtitle job" id="dcl">Decentraland Game Designer</h2>
+      <h2 class="subtitle job" id="lectra">Innovation maker at Lectra</h2>
+    </div>
+
+  </div>
+
+
+  <div id="details" class="details">
+    <svg id="backDetails" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.25304 11.2226L15.1542 2.32186C15.5833 1.89271 16.2795 1.89271 16.7086 2.32186L17.7469 3.36013C18.1756 3.78882 18.1761 4.48314 17.7487 4.91274L10.6942 11.9998L17.7483 19.0873C18.1761 19.5169 18.1751 20.2112 17.7465 20.6399L16.7082 21.6781C16.279 22.1073 15.5829 22.1073 15.1537 21.6781L6.25304 12.777C5.8239 12.3478 5.8239 11.6517 6.25304 11.2226Z" fill="#CCDD89"/>
+  </svg>
+    <div id="detailsList">
+      <div class="details-content" id="abricotDetails">
+        <h2 class="subtitle">Product Designer at Abricot Studio</h2>
+        <p class="caption">Blockchain creation studio</p>
+        <p class="body date">Nov, 2020 • </p>
+        <p class="body-emphasize">Focusing on art creation in all its forms</p>
+        <div class="body dev">
+          <p>Creative design</p>
+          <p class="body date">
+            From game to generative art creation, our artistic studio aims at gathering technology
+            and design to create innovative projects based on the blockchain and metaverse.
+          </p>
+          <div class="link body"><a href="https://avant-garde.gallery/" target="_blank">AvantGarde NFT</a></div>
+          <div class="link body"><a href="https://play.decentraland.org/?island=Iarud&position=-14%2C-120&realm=dg" target="_blank">Tourniquette 3D Game</a></div>
+          <div class="link body"><a href="https://play.decentraland.org/?island=Iarud&position=-14%2C-120&realm=dg" target="_blank">AvantGarde Gallery</a></div>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <a href="" class="CTA"><img alt="gallery link" src="image/gallery.svg">
+              gallery
+            </a>
           </div>
         </div>
-      <div id="passed-container">
-        <div class="caption">passed</div>
-        <div class="feedCard">
-          <div class="text-container">
-            <a>Avant Garde App and Logo</a>
-            <p>NFT Generator based on Deep Learning Algorithms and your Ethereum address</p>
+      </div>
+      <div class="details-content" id="metagameDetails">
+        <h2 class="subtitle">Metagame Designer Guild</h2>
+        <p class="caption">A Massive Online Coordination Game</p>
+        <p class="body date">Apr, 2021 • </p>
+        <p class="body-emphasize">Achieving missions for the designer's guild, playing the game to build the game.
+        </p>
+        <div class="body dev">
+          <p>UX/UI Design</p>
+          <p class="body date">
+            Metagame Designer's guild always needs motivated designers to work on building the project.
+            It is experimental and unique: Metagame is a game where people get rewarded by experience
+            point (XP) for achieving a mission and contributing to the community. Everyone is free of
+            working on the topic that he wants to develop, justifying the utility for the community.
+            The project is built, by the community, for the community and is fully decentralized.
+          </p>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <a href="" class="CTA"><img alt="gallery link" src="image/gallery.svg">
+              gallery
+            </a>
           </div>
-          <div class="def">1 week ago</div>
-        </div>
-        <div class="feedCard">
-          <div class="text-container">
-            <a>Mooni Landing Page</a>
-            <p>The easiest crypto off-ramp</p>
+          <div class="button">
+            <a href="https://wiki.metagame.wtf/" target="_blank" class="CTA"><img alt="website link"
+                                                                                  src="image/website.svg">
+              website
+            </a>
           </div>
-          <div class="def">1 month ago</div>
         </div>
-        <div class="feedCard">
-          <div class="text-container">
-            <a>Bold Liverty Landing Page</a>
-            <p>Marketing agency for digital nomads</p>
+      </div>
+      <div class="details-content" id="freelanceDetails">
+        <h2 class="subtitle">Freelance UX/UI Designer</h2>
+        <p class="caption">Remote worldwide</p>
+        <p class="body date">Nov, 2019 • </p>
+        <p class="body-emphasize">I help tech companies to convert complex services into easy-to-use interfaces.</p>
+        <div class="body dev">
+          <p>Branding and UX/UI Design</p>
+          <p class="body date">
+            Design thinking and user focused process of ideation and creation.
+            Logo and branding assets creation.
+            2D/3D illustrations.
+            Wireframe and high fidelity/interactive mockups design with Figma.
+          </p>
+          <p>Design System</p>
+          <p class="body date">
+            Creation of reusable components and style guides to organize the
+            design process of your product and help scale your project easily.
+            Design system implementation is made with Figma and includes:
+            color Scheme, typography, icon set, buttons, shadows, components...
+          </p>
+          <p>Products</p>
+          <p class="body date">Landing Page, Application Mobile/Web</p>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <a href="" class="CTA"><img alt="gallery link" src="image/gallery.svg">
+              gallery
+            </a>
           </div>
-          <div class="def">2 month ago</div>
         </div>
-        <div class="feedCard">
-          <div class="text-container">
-            <a>Decentraland 3D Modeling</a>
-            <p>Game Design for the Metavers</p>
+      </div>
+      <div class="details-content" id="varessDetails">
+        <h2 class="subtitle">Varess Application</h2>
+        <p class="caption">NFTs as collateral</p>
+        <p class="body date">2 months • Jul, 2021</p>
+        <p class="body-emphasize">Design a new product that helps people lend money with their sleeping NFTs</p>
+        <div class="body dev">
+          <p>Market study</p>
+          <p class="body date">Market and competitors analysis.
+            Personas and user stories elaboration.
+          </p>
+          <p>Branding and design</p>
+          <p class="body date">
+            Logo and branding assets creation.
+            Wireframe and application design with Figma.
+            Interactive mockups delivery.
+          </p>
+          <p>Design System</p>
+          <p class="body date">
+            Design system implementation into Figma.
+            Icons set creation.
+            Auto-layouts and responsive Figma components.
+          </p>
         </div>
-          <div class="def">3 month ago</div>
+        <div class="button-container">
+          <div class="button">
+            <a href="" class="CTA"><img alt="gallery link" src="image/gallery.svg">
+              gallery
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="details-content" id="premiaDetails">
+        <h2 class="subtitle">Premia UI Designer</h2>
+        <p class="caption">Permissionless options and metavaults </p>
+        <p class="body date">7 months • Mar, 2021</p>
+        <p class="body-emphasize">Working on recasting the Premia user experience and design for the V2 launch</p>
+        <div class="body dev">
+          <p>UX/UI design</p>
+          <p class="body date">Focusing on rebranding the project.
+            New user stories and workflow to ease the user process.
+            Optimization of the user experience with web3 constraints.
+          </p>
+          <p>Design System implementation</p>
+          <p class="body date">
+            Creation of a complete design system in Figma.
+            Designing the Notion style guide for designers and other teams.
+          </p>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <a href="https://premia.finance/" target="_blank" class="CTA"><img alt="website link" src="image/website.svg">
+              website
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="details-content" id="DCLDetails">
+        <h2 class="subtitle">Decentraland Game Designer</h2>
+        <p class="caption">The first-ever virtual world owned by its users</p>
+        <p class="body date">6 months • Feb, 2020</p>
+        <p class="body-emphasize">Designer for multiplayer games</p>
+        <div class="body dev">
+          <p>Game mechanics creation</p>
+          <p class="body date">Creating a good game logic integrating blockchain and NFTs minting processes.
+            Benchmark of famous and easy-to-play games.
+            Identification of user personas
+          </p>
+          <p>In-game user experience</p>
+          <p class="body date">
+            User workflow in a 3D environment.
+            Help users understand the game and the mission.
+            Easy integration of 2D UI into the 3D decor.
+          </p>
+          <p>Game ideation and design</p>
+          <p class="body date">Creating a 3D scene with strong technical constraints.
+            2D sketching.
+            3D designs and animations with Blender.
+          </p>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <a href="" class="CTA"><img alt="gallery link" src="image/gallery.svg">
+              gallery
+            </a>
+          </div>
+          <div class="button">
+            <a href="https://decentraland.org/" target="_blank" class="CTA"><img alt="website link"
+                                                                                 src="image/website.svg">
+              website
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="details-content" id="lectraDetails">
+        <h2 class="subtitle">Innovation maker at Lectra</h2>
+        <p class="caption">World leader in CAD software and CAM cutting-room systems for industries</p>
+        <p class="body date">1 year • Nov, 2018</p>
+        <p class="body-emphasize"> Product owner role in Lectra's innovation lab, focused on disrupting
+          the fashion production process based on innovative technologies.</p>
+        <div class="body dev">
+          <p>Competitive and technological intelligence</p>
+          <p class="body date">Exploration of emerging trends and technologies. Assessment of their
+            relevance to the business. Identification of market needs and consumer appetite. Technical feasibility
+            studies.
+          </p>
+          <p>Workshop and Design Sprints</p>
+          <p class="body date">Identification of necessary skills for the project. Creation of the working team.
+            Deck research and creation.
+          </p>
+          <p>Design and Live Experience</p>
+          <p class="body date">Mockups creation with Figma. User testing. Writing POC specifications for dev teams.
+            Scenario creation for the demo in the lab.
+          </p>
+        </div>
+        <div class="button-container">
+          <div class="button">
+            <a href="https://www.lectra.com/en" target="_blank" class="CTA"><img alt="website link"
+                                                                                 src="image/website.svg">
+              website
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-<!--  Bottom Container-->
-  <div id="bottom-container">
-
-<!--    Gallery Container-->
-    <div id="gallery-container">
-      <h3>Gallery</h3>
-
-<!--      Carousselle Container-->
-      <div id="carousselle-container">
-        <div class="icon">
-          <img
-            src="image/arrowLeft.svg"
-            alt="arrow left icon"
-            height="12px"
-            width="12px" />
-        </div>
-        <div class="carousselle-box">
-          <div class="imgCarousselle">
-            <img src="image/carousselle1.png">
-          </div>
-          <div class="subtitleSmall">Mooni Landing Page</div>
-        </div>
-        <div class="carousselle-box">
-          <div class="imgCarousselle">
-            <img src="image/carousselle2.png">
-          </div>
-          <div class="subtitleSmall">Bold Media Landing Page</div>
-        </div>
-        <div class="icon">
-          <img
-            src="image/arrowRight.svg"
-            alt="arrow right icon"
-            height="12px"
-            width="12px" />
-        </div>
+  <div id="mobile-menu">
+    <div class="button-container">
+      <div class="button">
+        <a href="mailto:mannbrs@gmail.com" class="CTA"><img alt="mail to" src="image/mail.svg">
+          e-mail
+        </a>
+      </div>
+      <div class="button">
+        <a href="https://calendly.com/mannbrs/30min" target="_blank" class="CTA"><img alt="book meeting"
+                                                                                      src="image/calendar.svg">
+          book
+        </a>
       </div>
     </div>
-
-<!--    Services Container-->
-    <div class="card">
-      <h3>Services</h3>
-      <div id="uidesign-container">
-        <div class="caption">ui design</div>
-        <div class="feedCard">
-          <div>
-            <div class="subtitle">Interactive Mockup</div>
-            <p>Wireframes and interactive mockups for your Landing Page or Application</p>
-          </div>
-        </div>
-        <div class="feedCard">
-          <div>
-            <div class="subtitle">Design System</div>
-            <p>Color Scheme, Typography, Icon set, Buttons, Shadows...</p>
-          </div>
-        </div>
-        <div class="feedCard">
-          <div>
-            <div class="subtitle">Static Website Integration</div>
-            <p>Fully responsive website made with HTML, CSS and JS</p>
-          </div>
-        </div>
-      </div>
-      <div id="project-container">
-        <div class="caption">you have a project ?</div>
-        <div id="CTA">
-            <div>
-              <a class="CtaLink" href="mailto:mannbrs@gmail.com">Send a message describing your needs     > </a>
-            </div>
-            <div>
-              <a class="CtaLink" href="https://calendly.com/mannbrs/30min"  target="_blank">Let’s schedule a call     ></a>
-            </div>
-          </div>
-        </div>
-        </div>
   </div>
-
-  <!--Footer-->
-  <footer>
-    <div id="footer-link">
-      <a href="https://github.com/ninja-fire/Folio" about="_blank">Made with 💛 by NinjaFire</a>
-    </div>
-  </footer>
 
 </div>
 
 
-<script src="./js/main.js"></script>
+<script type="module" src="./js/main.js"></script>
 </body>
 
 </html>
