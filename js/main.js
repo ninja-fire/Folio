@@ -11,22 +11,23 @@ let btnBackDetail;
 
 function Main() {
 
+  mqTablet = window.matchMedia('(max-width: 960px)').matches;
+  mqMobile = window.matchMedia('(max-width: 780px)').matches;
+
   jobs = Array.from(document.getElementsByClassName('job'));
   jobDetailContainer = document.getElementById('details');
   jobDetails = Array.from(document.getElementsByClassName('details-content'));
-  mqTablet = window.matchMedia('(max-width: 960px)').matches;
-  mqMobile = window.matchMedia('(max-width: 780px)').matches;
   mainContainer = document.getElementById('main');
   btnBackDetail = document.getElementById('backDetails');
 
   darkThemeToggle();
+  createScene(document.getElementById('profilePicture'));
   loadMainView();
   loadJobs();
   registerJobsEvent();
   registerCloseDetailEvent();
 
-  }
-  createScene(document.getElementById('profilePicture'));
+}
 
 function darkThemeToggle() {
 
@@ -127,7 +128,7 @@ function loadMainView() {
 
   } else {
 
-    if(!isSelected) {
+    if (!isSelected) {
       selectFirstJob();
     }
 
