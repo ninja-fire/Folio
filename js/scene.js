@@ -61,17 +61,21 @@ export function createScene(container){
   // const box = new THREE.BoxHelper( object, 0xffff00 );
   // scene.add( box );
 
-  const directionalLightFront = new THREE.DirectionalLight( 0xd3d3d3, 4 );
-  directionalLightFront.position.set(-4, 1, 50)
+  const directionalLightFront = new THREE.DirectionalLight( 0xd1d1d1, 2.5 );
+  directionalLightFront.position.set(-5, 1, 50)
   scene.add(directionalLightFront);
 
-  const directionalLightBack = new THREE.DirectionalLight( 0xd3d3d3, 3 );
-  directionalLightBack.position.set(4, 1, -50)
+  const directionalLightBack = new THREE.DirectionalLight( 0xd3d3d3, 1.5 );
+  directionalLightBack.position.set(5, 1, -50)
   scene.add(directionalLightBack);
 
-  const directionalLightLeft = new THREE.DirectionalLight( 0xd3d3d3, 2 );
-  directionalLightLeft.position.set(2, 1, 0)
+  const directionalLightLeft = new THREE.DirectionalLight( 0xd3d3d3, 1 );
+  directionalLightLeft.position.set(30, 10, 10)
   scene.add(directionalLightLeft);
+
+  const directionalLightRight = new THREE.DirectionalLight( 0xd3d3d3, 1 );
+  directionalLightRight.position.set(-30, 10, 0)
+  scene.add(directionalLightRight);
 
   // Load gltf
   const loader = new GLTFLoader();
