@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Stats from 'three/examples/jsm/libs/stats.module';
 const michelineBusteUrl = new URL('/image/michelineBuste.glb', import.meta.url);
 THREE.Cache.enabled = true;
 
@@ -10,7 +11,7 @@ export function createScene(container){
   const scene = new THREE.Scene();
   // Render
   const renderer = new THREE.WebGLRenderer({
-    precision: "highp",
+    // precision: "highp",
     alpha: true,
     antialias: true,
   });
@@ -21,9 +22,9 @@ export function createScene(container){
   renderer.physicallyCorrectLights = true;
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  const generator = new THREE.PMREMGenerator( renderer );
-  const rt = generator.fromScene( scene );
-  scene.environment = rt.texture;
+  // const generator = new THREE.PMREMGenerator( renderer );
+  // const rt = generator.fromScene( scene );
+  // scene.environment = rt.texture;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   container.appendChild(renderer.domElement);
@@ -110,11 +111,16 @@ export function createScene(container){
     }
   );
 
+  // Stats
+  const stats = Stats()
+  document.body.appendChild(stats.dom)
+
   // Render loop
   function animate() {
 
     requestAnimationFrame( animate );
     controls.update();
+    stats.update();
     renderer.render( scene, camera );
 
   }
@@ -126,7 +132,7 @@ export function createScene(container){
     // gltf.scene.children[3].children[1].children[5].applyMatrix(rotation);
 
     // gltf.scene.children[3].children[1].children[5].lookAt(camera.position);
-    document.body.addEventListener('mousemove', event => {
+    function onMouseMove(event){
 
       // var mousePos = new THREE.Vector3();
       // mousePos.set(
@@ -139,7 +145,7 @@ export function createScene(container){
       // // console.log(document.body.clientHeight / event.clientY);
       // if(event.clientY > 0){
       // }
-      const offsetY = event.clientY / window.innerHeight;
+      const offsetY = event.clientY / window.innerHeight || 0;
       // const offsetX = event.clientX / window.innerWidth;
       // console.log('offsetY', offsetY)
       // console.log(gltf.scene.children[3].children[1].children[5])
@@ -153,6 +159,8 @@ export function createScene(container){
       // // rotationMatrix.lookAt( target.position, mesh.position, mesh.up );
       // // targetRotation.setFromRotationMatrix( rotationMatrix );
       // gltf.scene.children[3].children[1].children[5].rotation.set(rotation);
-    })
+    }
+    document.body.addEventListener('mousemove',  onMouseMove );
+    // document.body.addEventListener('touchmove',  onMouseMove );
   }
 }
