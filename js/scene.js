@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Stats from 'three/examples/jsm/libs/stats.module';
 const michelineBusteUrl = new URL('/image/michelineBuste.glb', import.meta.url);
 THREE.Cache.enabled = true;
 
@@ -10,7 +11,8 @@ export function createScene(container){
   const scene = new THREE.Scene();
   // Render
   const renderer = new THREE.WebGLRenderer({
-    precision: "highp",
+    // precision: "highp",
+    // gammaOutput: true,
     alpha: true,
     antialias: true,
   });
@@ -21,14 +23,14 @@ export function createScene(container){
   renderer.physicallyCorrectLights = true;
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  const generator = new THREE.PMREMGenerator( renderer );
-  const rt = generator.fromScene( scene );
-  scene.environment = rt.texture;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFShadowMap;
+  // const generator = new THREE.PMREMGenerator( renderer );
+  // const rt = generator.fromScene( scene );
+  // scene.environment = rt.texture;
+  // renderer.shadowMap.enabled = true;
+  // renderer.shadowMap.type = THREE.PCFShadowMap;
   container.appendChild(renderer.domElement);
   // Camera
-  const camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 1000 );
+  const camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 500 );
   camera.position.set( 0, 0.3, 1.5 );
   camera.lookAt( 0, 0, 0 );
   // Control
@@ -96,7 +98,22 @@ export function createScene(container){
     michelineBusteUrl.pathname,
     function ( gltf ) {
       gltf.scene.position.set(0, -0.07, 0 );
+      // gltf.scene.traverse(function (child) {
+      //   if ((child).isMesh) {
+      //     let m = child
+      //     m.receiveShadow = true
+      //     m.castShadow = true;
+      //   }
+      //   if ((child).isLight) {
+      //     let l = child
+      //     l.castShadow = true
+      //     l.shadow.bias = -.003
+      //     l.shadow.mapSize.width = 2048
+      //     l.shadow.mapSize.height = 2048
+      //   }
+      // })
       scene.add( gltf.scene );
+      followMouse(gltf);
       animate();
     },
     function ( xhr ) {
@@ -109,12 +126,60 @@ export function createScene(container){
     }
   );
 
+  // Stats
+  const stats = Stats()
+  document.body.appendChild(stats.dom)
+
+  controls.update();
+  stats.update();
+  renderer.render( scene, camera );
+
   // Render loop
   function animate() {
 
     requestAnimationFrame( animate );
     controls.update();
+    stats.update();
     renderer.render( scene, camera );
 
+  }
+
+  function followMouse(gltf){
+    // gltf.scene.children[3].children[1].children[5].rotateX(-Math.PI / 6);
+    // const rotation = new THREE.Euler( 0, 0, 0, 'XYZ' );
+    // const rotation = new THREE.Matrix4().makeRotationY(Math.PI/8);
+    // gltf.scene.children[3].children[1].children[5].applyMatrix(rotation);
+
+    // gltf.scene.children[3].children[1].children[5].lookAt(camera.position);
+    function onMouseMove(event){
+
+      // var mousePos = new THREE.Vector3();
+      // mousePos.set(
+      //   (event.clientX/window.innerWidth)*2 - 1,
+      //   -(event.clientY/window.innerHeight)*2 + 1,
+      //   0);
+      // console.log(event.clientX, event.clientY)
+      // console.log(document.body.clientHeight, event.clientY)
+      // console.log(gltf.scene.children[3].children[1])
+      // // console.log(document.body.clientHeight / event.clientY);
+      // if(event.clientY > 0){
+      // }
+      const offsetY = event.clientY / window.innerHeight || 0;
+      // const offsetX = event.clientX / window.innerWidth;
+      // console.log('offsetY', offsetY)
+      // console.log(gltf.scene.children[3].children[1].children[5])
+      // gltf.scene.children[3].children[1].children[5].rotateX(Math.PI / (12 * offsetY - 6));
+      // gltf.scene.children[3].children[1].children[5].rotateX(0, 0, 0);
+      // gltf.scene.children[3].children[1].children[5].rotation.setFromVector3(new THREE.Vector3((Math.PI / 20) * (offsetY * 8 - 4), (Math.PI / 20) * (offsetX * 8 - 4), -(Math.PI / 20) * (offsetX * 8 - 4)) );
+      gltf.scene.children[3].children[1].children[5].lookAt(new THREE.Vector3(0, -8 * (offsetY - 0.5), 10))
+
+      // const rotation = new THREE.Euler( 60 * offsetY - 45, 0, 0, 'XYZ' );
+      //
+      // // rotationMatrix.lookAt( target.position, mesh.position, mesh.up );
+      // // targetRotation.setFromRotationMatrix( rotationMatrix );
+      // gltf.scene.children[3].children[1].children[5].rotation.set(rotation);
+    }
+    document.body.addEventListener('mousemove',  onMouseMove );
+    // document.body.addEventListener('touchmove',  onMouseMove );
   }
 }
