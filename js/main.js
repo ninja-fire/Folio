@@ -21,7 +21,6 @@ function Main() {
   btnBackDetail = document.getElementById('backDetails');
 
   darkThemeToggle();
-  createScene(document.getElementById('profilePicture'));
   loadMainView();
   loadJobs();
   registerJobsEvent();
