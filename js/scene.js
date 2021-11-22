@@ -86,7 +86,7 @@ export function createScene(container){
   const loadingManager = new THREE.LoadingManager( () => {
     const loadingScreen = document.getElementById( 'loading-screen' );
     loadingScreen.classList.add( 'fade-out' );
-    loadingScreen.addEventListener( 'transitionend', () => {
+    loadingScreen.addEventListener( 'transitionend', (event) => {
       const element = event.target;
       element.remove();
     });
