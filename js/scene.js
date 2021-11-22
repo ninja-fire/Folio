@@ -57,7 +57,7 @@ export class Scene{
 
   initCamera(){
     this.camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 500 );
-    this.camera.position.set( 0, 1, 5);
+    this.camera.position.set( 5, 1, 0);
     this.camera.lookAt( 0, 0, 0 );
     this.scene.add(this.camera);
     this.camera.updateProjectionMatrix();
