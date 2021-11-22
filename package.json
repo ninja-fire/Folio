@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/ninja-fire/Folio",
   "dependencies": {
-    "parcel": "^2.0.0"
+    "parcel": "^2.0.1",
+    "three": "^0.134.0"
   },
   "devDependencies": {
+    "@parcel/config-default": "^2.0.1",
+    "@parcel/transformer-raw": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
     "sass": "^1.43.4"
   }

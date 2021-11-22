@@ -1,10 +1,12 @@
 import '../scss/main.scss'
+import { createScene } from './scene';
 
 function Main(){
 
   const mqTablet = window.matchMedia('(max-width: 960px)').matches;
 
   darkThemeToggler();
+  createScene(document.getElementById('profilePicture'));
 
   if(mqTablet) {
 

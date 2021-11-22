@@ -1,0 +1,6 @@
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{glb,hdr}": ["@parcel/transformer-raw"]
+  }
+}
