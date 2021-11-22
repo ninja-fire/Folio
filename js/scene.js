@@ -12,6 +12,7 @@ export function createScene(container){
     alpha: true,
     antialias: true,
   });
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize( 256, 256 );
   renderer.domElement.style.border = '1px solid black';
   renderer.domElement.style['border-radius'] = '50%';
@@ -35,6 +36,7 @@ export function createScene(container){
   controls.maxPolarAngle = Math.PI/1.8;
   controls.minPolarAngle = Math.PI/6;
   controls.autoRotate = true;
+  controls.enablePan = false;
 
   // Light
   // const light = new THREE.HemisphereLight( 0x3D4143, 0x3D4143, 3 );
@@ -78,13 +80,18 @@ export function createScene(container){
   scene.add(directionalLightRight);
 
   // Load gltf
-  const loader = new GLTFLoader();
+  const loadingManager = new THREE.LoadingManager( () => {
+    const loadingScreen = document.getElementById( 'loading-screen' );
+    loadingScreen.classList.add( 'fade-out' );
+    loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
+  } );
+  const loader = new GLTFLoader(loadingManager);
   loader.load(
     michelineBusteUrl.pathname,
     function ( gltf ) {
       gltf.scene.position.set(0, -0.07, 0 );
       scene.add( gltf.scene );
-      renderer.render( scene, camera );
+      animate();
     },
     function ( xhr ) {
       // console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
@@ -97,8 +104,8 @@ export function createScene(container){
   );
 
   // Render
-  renderer.render( scene, camera );
-  controls.update();
+  // renderer.render( scene, camera );
+  // controls.update();
 
   function animate() {
 
@@ -107,5 +114,11 @@ export function createScene(container){
     renderer.render( scene, camera );
 
   }
-  animate();
+}
+
+function onTransitionEnd( event ) {
+
+  const element = event.target;
+  element.remove();
+
 }

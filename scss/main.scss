@@ -2,6 +2,7 @@
 @import "style";
 @import "typo";
 @import "button";
+@import "spinner";
 
 
 body {
@@ -87,6 +88,7 @@ body {
 
           #profilePicture {
 
+            position: relative;
             //img {
             //  width: 15rem;
             //  height: 15rem;
