@@ -174,7 +174,7 @@ export function createScene(container){
     // gltf.scene.children[3].children[1].children[5].applyMatrix(rotation);
 
     // gltf.scene.children[3].children[1].children[5].lookAt(camera.position);
-    function onMouseMove(event){
+    function onMouseMove(x, y){
 
       // var mousePos = new THREE.Vector3();
       // mousePos.set(
@@ -187,8 +187,8 @@ export function createScene(container){
       // // console.log(document.body.clientHeight / event.clientY);
       // if(event.clientY > 0){
       // }
-      const offsetY = event.clientY / window.innerHeight;
-      const offsetX = event.clientX / window.innerWidth;
+      const offsetY = y / window.innerHeight;
+      const offsetX = x / window.innerWidth;
       if(!offsetX || !offsetY){
         return
       }
@@ -267,8 +267,8 @@ export function createScene(container){
       return { x: dx, y: dy };
     }
 
-    document.body.addEventListener('mousemove',  onMouseMove );
-    // document.body.addEventListener('touchmove',  onMouseMove );
+    document.body.addEventListener('mousemove',  (event) => onMouseMove(event.clientX, event.clientY) );
+    document.body.addEventListener('touchmove',  (event) => onMouseMove(event.touches[0].clientX, event.touches[0].clientY));
   }
   document.addEventListener('click',  () => {
     if(eyeBlinking){
