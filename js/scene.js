@@ -33,6 +33,9 @@ export function createScene(container){
   const camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 500 );
   camera.position.set( 0, 0.3, 1.5 );
   camera.lookAt( 0, 0, 0 );
+  scene.add( camera );
+  camera.updateProjectionMatrix();
+
   // Control
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.minDistance = 0.7;
@@ -98,20 +101,13 @@ export function createScene(container){
     michelineBusteUrl.pathname,
     function ( gltf ) {
       gltf.scene.position.set(0, -0.07, 0 );
-      // gltf.scene.traverse(function (child) {
-      //   if ((child).isMesh) {
-      //     let m = child
-      //     m.receiveShadow = true
-      //     m.castShadow = true;
-      //   }
-      //   if ((child).isLight) {
-      //     let l = child
-      //     l.castShadow = true
-      //     l.shadow.bias = -.003
-      //     l.shadow.mapSize.width = 2048
-      //     l.shadow.mapSize.height = 2048
-      //   }
-      // })
+      gltf.scene.traverse( (child) => {
+        if ((child).isMesh) {
+          const m = child
+          m.receiveShadow = true
+          m.castShadow = true;
+        }
+      })
       scene.add( gltf.scene );
       followMouse(gltf);
       animate();
