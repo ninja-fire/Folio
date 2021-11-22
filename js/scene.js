@@ -97,6 +97,7 @@ export function createScene(container){
     function ( gltf ) {
       gltf.scene.position.set(0, -0.07, 0 );
       scene.add( gltf.scene );
+      followMouse(gltf);
       animate();
     },
     function ( xhr ) {
@@ -116,5 +117,42 @@ export function createScene(container){
     controls.update();
     renderer.render( scene, camera );
 
+  }
+
+  function followMouse(gltf){
+    // gltf.scene.children[3].children[1].children[5].rotateX(-Math.PI / 6);
+    // const rotation = new THREE.Euler( 0, 0, 0, 'XYZ' );
+    // const rotation = new THREE.Matrix4().makeRotationY(Math.PI/8);
+    // gltf.scene.children[3].children[1].children[5].applyMatrix(rotation);
+
+    // gltf.scene.children[3].children[1].children[5].lookAt(camera.position);
+    document.body.addEventListener('mousemove', event => {
+
+      // var mousePos = new THREE.Vector3();
+      // mousePos.set(
+      //   (event.clientX/window.innerWidth)*2 - 1,
+      //   -(event.clientY/window.innerHeight)*2 + 1,
+      //   0);
+      // console.log(event.clientX, event.clientY)
+      // console.log(document.body.clientHeight, event.clientY)
+      // console.log(gltf.scene.children[3].children[1])
+      // // console.log(document.body.clientHeight / event.clientY);
+      // if(event.clientY > 0){
+      // }
+      const offsetY = event.clientY / window.innerHeight;
+      // const offsetX = event.clientX / window.innerWidth;
+      // console.log('offsetY', offsetY)
+      // console.log(gltf.scene.children[3].children[1].children[5])
+      // gltf.scene.children[3].children[1].children[5].rotateX(Math.PI / (12 * offsetY - 6));
+      // gltf.scene.children[3].children[1].children[5].rotateX(0, 0, 0);
+      // gltf.scene.children[3].children[1].children[5].rotation.setFromVector3(new THREE.Vector3((Math.PI / 20) * (offsetY * 8 - 4), (Math.PI / 20) * (offsetX * 8 - 4), -(Math.PI / 20) * (offsetX * 8 - 4)) );
+      gltf.scene.children[3].children[1].children[5].lookAt(new THREE.Vector3(0, -8 * (offsetY - 0.5), 10))
+
+      // const rotation = new THREE.Euler( 60 * offsetY - 45, 0, 0, 'XYZ' );
+      //
+      // // rotationMatrix.lookAt( target.position, mesh.position, mesh.up );
+      // // targetRotation.setFromRotationMatrix( rotationMatrix );
+      // gltf.scene.children[3].children[1].children[5].rotation.set(rotation);
+    })
   }
 }
