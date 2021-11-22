@@ -1,181 +1,228 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import * as TWEEN from 'three/examples/jsm/libs/tween.module.min'
 import Stats from 'three/examples/jsm/libs/stats.module';
-const michelineBusteUrl = new URL('/image/michelineBuste.glb', import.meta.url);
+const michelineBusteUrl = new URL('/image/michelineBusteRigged.glb', import.meta.url);
 THREE.Cache.enabled = true;
+export class Scene{
 
-export function createScene(container){
+  constructor(container){
+    this.container = container;
+    this.initScene();
+    this.initRender();
+    this.initCamera();
+    this.initControl();
+    this.initLights();
 
-  // Scene
-  const scene = new THREE.Scene();
-  // Render
-  const renderer = new THREE.WebGLRenderer({
-    // precision: "highp",
-    // gammaOutput: true,
-    alpha: true,
-    antialias: true,
-  });
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize( 256, 256 );
-  renderer.domElement.style.border = '1px solid black';
-  renderer.domElement.style['border-radius'] = '50%';
-  renderer.physicallyCorrectLights = true;
-  renderer.outputEncoding = THREE.sRGBEncoding;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  // const generator = new THREE.PMREMGenerator( renderer );
-  // const rt = generator.fromScene( scene );
-  // scene.environment = rt.texture;
-  // renderer.shadowMap.enabled = true;
-  // renderer.shadowMap.type = THREE.PCFShadowMap;
-  container.appendChild(renderer.domElement);
-  // Camera
-  const camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 500 );
-  camera.position.set( 0, 0.3, 1.5 );
-  camera.lookAt( 0, 0, 0 );
-  scene.add( camera );
-  camera.updateProjectionMatrix();
+    this.initStats();
 
-  // Control
-  const controls = new OrbitControls(camera, renderer.domElement);
-  controls.minDistance = 0.7;
-  controls.maxDistance = 2;
-  controls.maxPolarAngle = Math.PI/1.8;
-  controls.minPolarAngle = Math.PI/6;
-  controls.autoRotate = true;
-  controls.enablePan = false;
+    this.controls.update();
+    this.stats.update();
+    this.clock = new THREE.Clock();
+    this.renderer.render(this.scene, this.camera);
+    this.loadGltf();
+  }
 
-  // Light
-  // const light = new THREE.HemisphereLight( 0x3D4143, 0x3D4143, 3 );
-  // scene.add( light );
-  // const ambientLight = new THREE.HemisphereLight(
-  //   'white', // bright sky color
-  //   'darkslategrey', // dim ground color
-  //   2, // intensity
-  // );
-  // scene.add(ambientLight);
-  // const light = new THREE.AmbientLight( 0xd3d3d3, 5 );
-  // scene.add(light);
+  initStats(){
+    this.stats = Stats();
+    document.body.appendChild(this.stats.dom);
+  }
 
-  // Box
-  // const geometry = new THREE.BoxGeometry();
-  // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-  // const cube = new THREE.Mesh( geometry, material );
-  // cube.position.set( 0, 0, -1 );
-  // scene.add( cube );
+  initScene(){
+    this.scene = new THREE.Scene();
+  }
 
-  // Debug box
-  // const sphere = new THREE.SphereGeometry();
-  // const object = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0xff0000 ) );
-  // const box = new THREE.BoxHelper( object, 0xffff00 );
-  // scene.add( box );
-
-  // Lights
-  const directionalLightFront = new THREE.DirectionalLight( 0xd1d1d1, 2.5 );
-  directionalLightFront.position.set(-5, 1, 50)
-  scene.add(directionalLightFront);
-
-  const directionalLightBack = new THREE.DirectionalLight( 0xd3d3d3, 1.5 );
-  directionalLightBack.position.set(5, 1, -50)
-  scene.add(directionalLightBack);
-
-  const directionalLightLeft = new THREE.DirectionalLight( 0xd3d3d3, 1 );
-  directionalLightLeft.position.set(30, 10, 10)
-  scene.add(directionalLightLeft);
-
-  const directionalLightRight = new THREE.DirectionalLight( 0xd3d3d3, 1 );
-  directionalLightRight.position.set(-30, 10, 0)
-  scene.add(directionalLightRight);
-
-  // Load gltf
-  const loadingManager = new THREE.LoadingManager( () => {
-    const loadingScreen = document.getElementById( 'loading-screen' );
-    loadingScreen.classList.add( 'fade-out' );
-    loadingScreen.addEventListener( 'transitionend', (event) => {
-      const element = event.target;
-      element.remove();
+  initRender(){
+    this.renderer = new THREE.WebGLRenderer({
+      // precision: "highp",
+      // gammaOutput: true,
+      alpha: true,
+      antialias: true,
     });
-  });
-  const loader = new GLTFLoader(loadingManager);
-  loader.load(
-    michelineBusteUrl.pathname,
-    function ( gltf ) {
-      gltf.scene.position.set(0, -0.07, 0 );
-      gltf.scene.traverse( (child) => {
-        if ((child).isMesh) {
-          const m = child
-          m.receiveShadow = true
-          m.castShadow = true;
-        }
-      })
-      scene.add( gltf.scene );
-      followMouse(gltf);
-      animate();
-    },
-    function ( xhr ) {
-      // console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    },
-    function ( error ) {
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setSize( 256, 256 );
+    this.renderer.domElement.style.border = '1px solid black';
+    this.renderer.domElement.style['border-radius'] = '50%';
+    this.renderer.physicallyCorrectLights = true;
+    this.renderer.outputEncoding = THREE.sRGBEncoding;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    // const generator = new THREE.PMREMGenerator( renderer );
+    // const rt = generator.fromScene( scene );
+    // scene.environment = rt.texture;
+    // renderer.shadowMap.enabled = true;
+    // renderer.shadowMap.type = THREE.PCFShadowMap;
+    this.container.appendChild(this.renderer.domElement);
+  }
 
-      console.log( 'An error happened', error);
+  initCamera(){
+    this.camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 500 );
+    this.camera.position.set( 0, 1, 5);
+    this.camera.lookAt( 0, 0, 0 );
+    this.scene.add(this.camera);
+    this.camera.updateProjectionMatrix();
+  }
 
+  initControl(){
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.minDistance = 2;
+    this.controls.maxDistance = 6;
+    this.controls.maxPolarAngle = Math.PI/1.8;
+    this.controls.minPolarAngle = Math.PI/6;
+    this.controls.autoRotate = true;
+    this.controls.enablePan = false;
+  }
+
+  initLights(){
+
+    // Light
+    // const light = new THREE.HemisphereLight( 0x3D4143, 0x3D4143, 3 );
+    // scene.add( light );
+    // const ambientLight = new THREE.HemisphereLight(
+    //   'white', // bright sky color
+    //   'darkslategrey', // dim ground color
+    //   2, // intensity
+    // );
+    // scene.add(ambientLight);
+    // const light = new THREE.AmbientLight( 0xd3d3d3, 5 );
+    // scene.add(light);
+
+    // Box
+    // const geometry = new THREE.BoxGeometry();
+    // const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    // const cube = new THREE.Mesh( geometry, material );
+    // cube.position.set( 0, 0, -1 );
+    // scene.add( cube );
+
+    // Debug box
+    const sphere = new THREE.SphereGeometry();
+    const object = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0x000000 ) );
+    const box = new THREE.BoxHelper( object, 0x000000 );
+    this.scene.add( box );
+
+    // Lights
+    const directionalLightFront = new THREE.DirectionalLight( 0xd1d1d1, 2.5 );
+    directionalLightFront.position.set(-5, 1, 50)
+    this.scene.add(directionalLightFront);
+
+    const directionalLightBack = new THREE.DirectionalLight( 0xd3d3d3, 1.5 );
+    directionalLightBack.position.set(5, 1, -50)
+    this.scene.add(directionalLightBack);
+
+    const directionalLightLeft = new THREE.DirectionalLight( 0xd3d3d3, 1 );
+    directionalLightLeft.position.set(30, 10, 10)
+    this.scene.add(directionalLightLeft);
+
+    const directionalLightRight = new THREE.DirectionalLight( 0xd3d3d3, 1 );
+    directionalLightRight.position.set(-30, 10, 0)
+    this.scene.add(directionalLightRight);
+  }
+
+  loadGltf(){
+    const loadingManager = new THREE.LoadingManager( () => {
+      const loadingScreen = document.getElementById( 'loading-screen' );
+      loadingScreen.classList.add( 'fade-out' );
+      loadingScreen.addEventListener( 'transitionend', (event) => {
+        const element = event.target;
+        element.remove();
+      });
+    });
+    const loader = new GLTFLoader(loadingManager);
+    loader.load(
+      michelineBusteUrl.pathname, ( gltf ) => {
+        gltf.scene.position.set(0, -0.3, 0 );
+        gltf.scene.traverse( (child) => {
+          if (child.isMesh) {
+            child.receiveShadow = true
+            child.castShadow = true;
+          }
+        })
+        this.mixer = new THREE.AnimationMixer(gltf.scene);
+
+        // const testAnim = THREE.AnimationClip.findByName(gltf.animations, 'test');
+        // this.test = this.mixer.clipAction(testAnim);
+        // this.test.clampWhenFinished = true;
+        // // this.test.enable = true;
+        // this.test.play();
+
+        const eyeBlinkingAnim = THREE.AnimationClip.findByName(gltf.animations, 'eyeBlinking');
+        this.eyeBlinking = this.mixer.clipAction(eyeBlinkingAnim);
+        this.eyeBlinking.setLoop(THREE.LoopOnce);
+        this.eyeBlinking.clampWhenFinished = true;
+
+        this.scene.add(gltf.scene);
+        this.followMouse(gltf);
+        this.initEyesBlinking();
+        this.update();
+      },
+      function ( xhr ) {
+        // console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+      },
+      function ( error ) {
+
+        console.log( 'An error happened', error);
+
+      }
+    );
+  }
+
+  update(){
+    requestAnimationFrame(this.update.bind(this));
+    this.renderer.render(this.scene, this.camera);
+    if (this.mixer) {
+      this.mixer.update(this.clock.getDelta());
     }
-  );
+    this.controls.update();
+    TWEEN.update();
+    this.stats.update();
+  }
 
-  // Stats
-  const stats = Stats()
-  document.body.appendChild(stats.dom)
+  followMouse(gltf){
 
-  controls.update();
-  stats.update();
-  renderer.render( scene, camera );
+    const onMouseMove = (x, y) => {
+      const offsetY = y / window.innerHeight;
+      const offsetX = x / window.innerWidth;
+      if(!offsetX || !offsetY){
+        return
+      }
+      console.log(gltf.scene.children[3].children[0].children[0].children[0].children[0])
+      const bones = [
+        gltf.scene.children[3].children[0].children[0].children[0].children[0].children[0],
+        // gltf.scene.children[3].children[0].children[1],
+        gltf.scene.children[3].children[0].children[2].children[0],
+        // gltf.scene.children[3].children[0].children[3],
+      ]
 
-  // Render loop
-  function animate() {
+      bones.forEach(bone => {
+        const startRotation = bone.quaternion.clone();
+        bone.lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -8 * (offsetY - 0.5), 10));
+        const endRotation = bone.quaternion.clone();
+        bone.quaternion.copy(startRotation);
+        // bone.quaternion.set(endRotation.x, endRotation.y, endRotation.z, endRotation.w);
+        const tweenRotation = new TWEEN.Tween(bone.quaternion).to(endRotation, 200).start().onComplete( () => {
+          bone.quaternion.copy(endRotation); // to be exact
+        } );
+        //          .easing(TWEEN.Easing.Elastic.Out)
+        // if(this.tt){
+        //   this.tt.chain(tweenRotation);
+        // } else {
+        //   this.tt = tweenRotation;
+        // }
 
-    requestAnimationFrame( animate );
-    controls.update();
-    stats.update();
-    renderer.render( scene, camera );
+        // bone.lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 5, 10))
+      })
+    }
+
+    document.body.addEventListener('mousemove',  (event) => onMouseMove(event.clientX, event.clientY) );
+    document.body.addEventListener('touchmove',  (event) => onMouseMove(event.touches[0].clientX, event.touches[0].clientY));
 
   }
 
-  function followMouse(gltf){
-    // gltf.scene.children[3].children[1].children[5].rotateX(-Math.PI / 6);
-    // const rotation = new THREE.Euler( 0, 0, 0, 'XYZ' );
-    // const rotation = new THREE.Matrix4().makeRotationY(Math.PI/8);
-    // gltf.scene.children[3].children[1].children[5].applyMatrix(rotation);
-
-    // gltf.scene.children[3].children[1].children[5].lookAt(camera.position);
-    function onMouseMove(event){
-
-      // var mousePos = new THREE.Vector3();
-      // mousePos.set(
-      //   (event.clientX/window.innerWidth)*2 - 1,
-      //   -(event.clientY/window.innerHeight)*2 + 1,
-      //   0);
-      // console.log(event.clientX, event.clientY)
-      // console.log(document.body.clientHeight, event.clientY)
-      // console.log(gltf.scene.children[3].children[1])
-      // // console.log(document.body.clientHeight / event.clientY);
-      // if(event.clientY > 0){
-      // }
-      const offsetY = event.clientY / window.innerHeight || 0;
-      // const offsetX = event.clientX / window.innerWidth;
-      // console.log('offsetY', offsetY)
-      // console.log(gltf.scene.children[3].children[1].children[5])
-      // gltf.scene.children[3].children[1].children[5].rotateX(Math.PI / (12 * offsetY - 6));
-      // gltf.scene.children[3].children[1].children[5].rotateX(0, 0, 0);
-      // gltf.scene.children[3].children[1].children[5].rotation.setFromVector3(new THREE.Vector3((Math.PI / 20) * (offsetY * 8 - 4), (Math.PI / 20) * (offsetX * 8 - 4), -(Math.PI / 20) * (offsetX * 8 - 4)) );
-      gltf.scene.children[3].children[1].children[5].lookAt(new THREE.Vector3(0, -8 * (offsetY - 0.5), 10))
-
-      // const rotation = new THREE.Euler( 60 * offsetY - 45, 0, 0, 'XYZ' );
-      //
-      // // rotationMatrix.lookAt( target.position, mesh.position, mesh.up );
-      // // targetRotation.setFromRotationMatrix( rotationMatrix );
-      // gltf.scene.children[3].children[1].children[5].rotation.set(rotation);
-    }
-    document.body.addEventListener('mousemove',  onMouseMove );
-    // document.body.addEventListener('touchmove',  onMouseMove );
+  initEyesBlinking(){
+    document.addEventListener('click',  () => {
+      if(this.eyeBlinking){
+        this.eyeBlinking.play().reset();
+      }
+    });
   }
 }

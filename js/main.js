@@ -1,5 +1,5 @@
 import '../scss/main.scss'
-import { createScene } from './scene';
+import { Scene } from './scene';
 
 function Main(){
 
@@ -16,7 +16,7 @@ function Main(){
     detailDesktop();
 
   }
-  createScene(document.getElementById('profilePicture'));
+  new Scene(document.getElementById('profilePicture'));
 
 }
 
