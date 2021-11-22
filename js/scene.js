@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const michelineBusteUrl = new URL('/image/michelineBuste.glb', import.meta.url);
+THREE.Cache.enabled = true;
 
 export function createScene(container){
 
