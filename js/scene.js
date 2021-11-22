@@ -8,6 +8,7 @@ export function createScene(container){
 
   // Scene
   const scene = new THREE.Scene();
+  // Render
   const renderer = new THREE.WebGLRenderer({
     precision: "highp",
     alpha: true,
@@ -23,9 +24,9 @@ export function createScene(container){
   const generator = new THREE.PMREMGenerator( renderer );
   const rt = generator.fromScene( scene );
   scene.environment = rt.texture;
-  container.appendChild( renderer.domElement );
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFShadowMap;//THREE.BasicShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  container.appendChild(renderer.domElement);
   // Camera
   const camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 1000 );
   camera.position.set( 0, 0.3, 1.5 );
@@ -64,6 +65,7 @@ export function createScene(container){
   // const box = new THREE.BoxHelper( object, 0xffff00 );
   // scene.add( box );
 
+  // Lights
   const directionalLightFront = new THREE.DirectionalLight( 0xd1d1d1, 2.5 );
   directionalLightFront.position.set(-5, 1, 50)
   scene.add(directionalLightFront);
@@ -84,8 +86,11 @@ export function createScene(container){
   const loadingManager = new THREE.LoadingManager( () => {
     const loadingScreen = document.getElementById( 'loading-screen' );
     loadingScreen.classList.add( 'fade-out' );
-    loadingScreen.addEventListener( 'transitionend', onTransitionEnd );
-  } );
+    loadingScreen.addEventListener( 'transitionend', () => {
+      const element = event.target;
+      element.remove();
+    });
+  });
   const loader = new GLTFLoader(loadingManager);
   loader.load(
     michelineBusteUrl.pathname,
@@ -104,10 +109,7 @@ export function createScene(container){
     }
   );
 
-  // Render
-  // renderer.render( scene, camera );
-  // controls.update();
-
+  // Render loop
   function animate() {
 
     requestAnimationFrame( animate );
@@ -115,11 +117,4 @@ export function createScene(container){
     renderer.render( scene, camera );
 
   }
-}
-
-function onTransitionEnd( event ) {
-
-  const element = event.target;
-  element.remove();
-
 }
