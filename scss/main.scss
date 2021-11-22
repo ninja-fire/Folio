@@ -4,7 +4,6 @@
 @import "button";
 @import "spinner";
 
-
 body {
   background: var(--color-page-background);
   height: 100vh;
@@ -187,6 +186,7 @@ body {
       align-items: center;
 
       #backDetails {
+        cursor: pointer;
         display: none;
       }
 
