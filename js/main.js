@@ -1,5 +1,5 @@
 import '../scss/main.scss'
-import {createScene} from './scene';
+import { Scene } from './scene';
 
 let jobs;
 let jobDetailContainer;
@@ -26,6 +26,7 @@ function Main() {
   loadJobs();
   registerJobsEvent();
   registerCloseDetailEvent();
+  new Scene(document.getElementById('profilePicture'));
 
 }
 
