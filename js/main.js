@@ -1,96 +1,189 @@
 import '../scss/main.scss'
-import { createScene } from './scene';
+import {createScene} from './scene';
 
-function Main(){
+let jobs;
+let jobDetailContainer;
+let jobDetails;
+let mqTablet;
+let mqMobile;
+let mainContainer;
+let btnBackDetail;
 
-  const mqTablet = window.matchMedia('(max-width: 960px)').matches;
+function Main() {
 
-  darkThemeToggler();
+  jobs = Array.from(document.getElementsByClassName('job'));
+  jobDetailContainer = document.getElementById('details');
+  jobDetails = Array.from(document.getElementsByClassName('details-content'));
+  mqTablet = window.matchMedia('(max-width: 960px)').matches;
+  mqMobile = window.matchMedia('(max-width: 780px)').matches;
+  mainContainer = document.getElementById('main');
+  btnBackDetail = document.getElementById('backDetails');
 
-  if(mqTablet) {
-
-    detailTablet();
-
-  } else {
-
-    detailDesktop();
+  darkThemeToggle();
+  loadMainView();
+  loadJobs();
+  registerJobsEvent();
+  registerCloseDetailEvent();
 
   }
   createScene(document.getElementById('profilePicture'));
 
-}
-
-function darkThemeToggler() {
+function darkThemeToggle() {
 
   const moonBtn = document.getElementById('moonBtn');
+
   moonBtn.addEventListener('click', () => {
     document.body.classList.toggle('dark');
   });
 
 }
 
-function detailDesktop() {
-
-  const detailsList = document.getElementById('detailsList');
-  const jobs = Array.from(document.getElementsByClassName('job'));
-  const details = Array.from(detailsList.children);
-
-  let previousIndex = 0;
-  details[previousIndex].style.display = 'flex';
-  jobs[previousIndex].classList.toggle('selected');
+function registerJobsEvent() {
 
   jobs.forEach((job, index) => job.addEventListener('click', () => {
 
-    const detail = details[index];
+    removeSelect();
+    jobs[index].classList.add('selected');
+    jobDetails[index].classList.add('selected');
 
-    if(index === previousIndex) {
+    if (mqTablet) {
 
-      return false;
-
-    } else {
-
-      details[previousIndex].style.display = 'none';
-      jobs[previousIndex].classList.toggle('selected');
-
-      detail.style.display = 'flex';
-      job.classList.toggle('selected');
-      previousIndex = index;
+      mainContainer.classList.add('visible');
+      btnBackDetail.style.display = 'flex';
 
     }
 
+    if (jobDetailContainer.classList.contains('visible')) {
+      jobDetailContainer.classList.remove('visible');
+    }
+
   }));
+}
+
+function loadJobs() {
+
+  if (mqMobile) {
+
+    removeSelect();
+
+    if (!jobDetailContainer.classList.contains('visible')) {
+      jobDetailContainer.classList.add('visible');
+    }
+
+  } else if (mqTablet) {
+
+    removeSelect();
+
+    btnBackDetail.style.display = 'none';
+    if (mainContainer.classList.contains('visible')) {
+      mainContainer.classList.remove('visible');
+    }
+  }
+}
+
+function loadMainView() {
+
+  let isSelected = false;
+  btnBackDetail.style.display = 'none';
+
+  for (let i = 0; i < jobs.length; i++) {
+    if (jobs[i].classList.contains('selected')) {
+      isSelected = true;
+      break;
+    }
+  }
+
+  if (mqMobile) {
+
+    if (isSelected) {
+
+      btnBackDetail.style.display = 'flex';
+
+    } else {
+
+      btnBackDetail.style.display = 'none';
+
+      if (!jobDetailContainer.classList.contains('visible')) {
+        jobDetailContainer.classList.add('visible');
+      }
+    }
+
+  } else if (mqTablet) {
+
+    if (isSelected) {
+
+      btnBackDetail.style.display = 'flex';
+
+      if (!mainContainer.classList.contains('visible')) {
+        mainContainer.classList.add('visible');
+      }
+
+    } else {
+
+      if (mainContainer.classList.contains('visible')) {
+        mainContainer.classList.remove('visible');
+      }
+    }
+
+  } else {
+
+    if(!isSelected) {
+      selectFirstJob();
+    }
+
+    if (jobDetailContainer.classList.contains('visible')) {
+      jobDetailContainer.classList.remove('visible');
+    }
+
+    if (mainContainer.classList.contains('visible')) {
+      mainContainer.classList.remove('visible');
+    }
+  }
+}
+
+function selectFirstJob() {
+
+  jobs[0].classList.add('selected')
+  jobDetails[0].classList.add('selected')
 
 }
 
-function detailTablet() {
+function removeSelect() {
 
-  const detailsList = document.getElementById('detailsList');
-  const detailsContainer = document.getElementById('details');
-  const mainContainer = document.getElementById('main');
-  const backDetails = document.getElementById('backDetails');
-  const jobs = Array.from(document.getElementsByClassName('job'));
-  const details = Array.from(detailsList.children);
+  for (let i = 0; i < jobs.length; i++) {
+    if (jobs[i].classList.contains('selected')) {
+      jobs[i].classList.remove('selected');
+    }
+  }
 
-  let detail = null;
+  for (let i = 0; i < jobDetails.length; i++) {
+    if (jobDetails[i].classList.contains('selected')) {
+      jobDetails[i].classList.remove('selected');
+    }
+  }
 
-  jobs.forEach((job, index) => job.addEventListener('click', () => {
+}
 
-    detail = details[index];
-    detail.style.display = 'flex';
+function registerCloseDetailEvent() {
 
-    mainContainer.classList.toggle('visible');
-    detailsContainer.style.display = 'flex';
+  btnBackDetail.addEventListener('click', () => {
 
-  }));
+    removeSelect();
+    mainContainer.classList.remove('visible');
+    btnBackDetail.style.display = 'none';
 
-  backDetails.addEventListener('click', () => {
-
-    mainContainer.classList.toggle('visible');
-    detailsContainer.style.display = 'none';
-    detail.style.display = 'none';
-
+    if (mqMobile) {
+      if (!jobDetailContainer.classList.contains('visible')) {
+        jobDetailContainer.classList.add('visible');
+      }
+    }
   });
-
 }
 
 document.addEventListener('DOMContentLoaded', Main);
+
+window.addEventListener('resize', () => {
+  mqTablet = window.matchMedia('(max-width: 960px)').matches;
+  mqMobile = window.matchMedia('(max-width: 780px)').matches;
+  loadMainView();
+});
