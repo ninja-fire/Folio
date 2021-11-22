@@ -15,10 +15,9 @@ export class Scene{
     this.initControl();
     this.initLights();
 
-    this.initStats();
+    // this.initStats();
 
     this.controls.update();
-    this.stats.update();
     this.clock = new THREE.Clock();
     this.renderer.render(this.scene, this.camera);
     this.loadGltf();
@@ -26,6 +25,7 @@ export class Scene{
 
   initStats(){
     this.stats = Stats();
+    this.stats.update();
     document.body.appendChild(this.stats.dom);
   }
 
@@ -95,10 +95,10 @@ export class Scene{
     // scene.add( cube );
 
     // Debug box
-    const sphere = new THREE.SphereGeometry();
-    const object = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0x000000 ) );
-    const box = new THREE.BoxHelper( object, 0x000000 );
-    this.scene.add( box );
+    // const sphere = new THREE.SphereGeometry();
+    // const object = new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( 0x000000 ) );
+    // const box = new THREE.BoxHelper( object, 0x000000 );
+    // this.scene.add( box );
 
     // Lights
     const directionalLightFront = new THREE.DirectionalLight( 0xd1d1d1, 2.5 );
@@ -174,7 +174,9 @@ export class Scene{
     }
     this.controls.update();
     TWEEN.update();
-    this.stats.update();
+    if(this.stats){
+      this.stats.update();
+    }
   }
 
   followMouse(gltf){
