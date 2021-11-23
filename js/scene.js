@@ -158,7 +158,7 @@ export class Scene{
 
   initCamera(){
     this.camera = new THREE.PerspectiveCamera( 15, 1, 0.1, 500 );
-    this.camera.position.set( 0, 1, 5);
+    this.camera.position.set(5, 1, 0);
     this.camera.lookAt( 0, 0, 0 );
     this.scene.add(this.camera);
     this.camera.updateProjectionMatrix();
@@ -260,12 +260,13 @@ export class Scene{
         // this.idleAnim = this.mixer.clipAction(idleActionAnim);
         // this.idleAnim.clampWhenFinished = true;
         // this.idleAnim.enable = true;
-        // this.idleAnim.play();
+        // this.idleAnim.play().reset();
 
         const eyeBlinkingAnim = THREE.AnimationClip.findByName(gltf.animations, 'eyeBlinking');
         this.eyeBlinking = this.mixer.clipAction(eyeBlinkingAnim);
         this.eyeBlinking.setLoop(THREE.LoopOnce);
         this.eyeBlinking.clampWhenFinished = true;
+        this.eyeBlinking.play().reset();
         this.scene.add(gltf.scene);
         this.followMouse(gltf);
         this.initEyesBlinking();
