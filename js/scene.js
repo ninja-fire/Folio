@@ -125,10 +125,14 @@ export class Scene{
 
   initRender(){
     this.renderer = new THREE.WebGLRenderer({
-      precision: "highp",
+      precision: "high-performance",
       // gammaOutput: true,
       alpha: true,
-      antialias: true,
+      // antialias: true,
+      powerPreference: "high-performance",
+      antialias: false,
+      stencil: false,
+      depth: false
     });
     // this.renderer.setClearColor(0x262626, 1);
     this.renderer.setPixelRatio(window.devicePixelRatio);
@@ -255,14 +259,20 @@ export class Scene{
         })
         this.mixer = new THREE.AnimationMixer(gltf.scene);
 
-        // const idleActionAnim = THREE.AnimationClip.findByName(gltf.animations, 'idleAction');
-        // idleActionAnim.tracks.splice(6, 7);
-        // this.idleAnim = this.mixer.clipAction(idleActionAnim);
-        // this.idleAnim.clampWhenFinished = true;
+        const idleActionAnim = THREE.AnimationClip.findByName(gltf.animations, 'idleAction').optimize();
+        // const idleActionAnim = THREE.AnimationUtils.subclip( idleActionAnim1, 'idle', 10, 80).optimize();
+        this.idleAnim = this.mixer.clipAction(idleActionAnim);
+        this.idleAnim.clampWhenFinished = true;
         // this.idleAnim.enable = true;
-        // this.idleAnim.play().reset();
-
-        const eyeBlinkingAnim = THREE.AnimationClip.findByName(gltf.animations, 'eyeBlinking');
+        // this.idleAnim.setLoop(THREE.LoopOnce);
+        // this.idleAnim.fadeIn(0.2)
+        this.idleAnim.play().reset();
+        // this.mixer.addEventListener('finished',(e) => {
+        //   if(e.action._clip.name === 'idleAction'){
+        //     this.idleAnim.reset().play();
+        //   }
+        // });
+        const eyeBlinkingAnim = THREE.AnimationClip.findByName(gltf.animations, 'eyeBlinking').optimize();
         this.eyeBlinking = this.mixer.clipAction(eyeBlinkingAnim);
         this.eyeBlinking.setLoop(THREE.LoopOnce);
         this.eyeBlinking.clampWhenFinished = true;
@@ -284,7 +294,6 @@ export class Scene{
   }
 
   update(){
-    requestAnimationFrame(this.update.bind(this));
     const delta = this.clock.getDelta();
     if (this.mixer) {
       this.mixer.update(delta);
@@ -295,6 +304,7 @@ export class Scene{
       this.stats.update();
     }
     this.composer.render(delta);
+    requestAnimationFrame(this.update.bind(this));
 
   }
 
@@ -307,21 +317,21 @@ export class Scene{
       if(!offsetX || !offsetY){
         return
       }
+      // console.log(gltf.scene);
       const bones = [
-        gltf.scene.children[6].children[0].children[0].children[0],
-        gltf.scene.children[6].children[0].children[2].children[0],
+        gltf.scene.children[1].children[0].children[0].children[0],
+        gltf.scene.children[1].children[0].children[2].children[0],
       ]
-
-      bones.forEach(bone => {
+      bones.forEach( (bone, i) => {
         const startRotation = bone.quaternion.clone();
         bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10));
         const endRotation = bone.quaternion.clone();
         bone.quaternion.copy(startRotation);
-        const tweenRotation = new TWEEN.Tween(bone.quaternion).to(endRotation, 200).start().onComplete( () => {
-          bone.quaternion.copy(endRotation); // to be exact
-        } );
 
-        // bone.lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5) - 5, 10))
+        new TWEEN.Tween(bone.quaternion).to(endRotation, 200).start().onComplete( () => {
+          bone.quaternion.copy(endRotation);
+        } );
+        // bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10))
       })
     }
 
