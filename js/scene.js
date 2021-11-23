@@ -14,13 +14,13 @@ import Stats from 'three/examples/jsm/libs/stats.module';
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 import {Vector2} from "three";
 const michelineBusteUrl = new URL('/image/michelineBusteRigged.glb', import.meta.url);
-// THREE.Cache.enabled = true;
 
 export class Scene{
 
   constructor(container){
     this.size = 256;
     this.isDebug = process.env.NODE_ENV !== 'production';
+    THREE.Cache.enabled = this.isDebug;
     this.container = container;
     this.initGui();
     this.initScene();
