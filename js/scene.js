@@ -20,7 +20,7 @@ export class Scene{
   constructor(container){
     this.size = 256;
     this.isDebug = process.env.NODE_ENV !== 'production';
-    THREE.Cache.enabled = this.isDebug;
+    THREE.Cache.enabled = !this.isDebug;
     this.container = container;
     this.initGui();
     this.initScene();
@@ -255,12 +255,12 @@ export class Scene{
         })
         this.mixer = new THREE.AnimationMixer(gltf.scene);
 
-        // const testAnim = THREE.AnimationClip.findByName(gltf.animations, 'test');
-        // testAnim.tracks.splice(6, 7);
-        // this.test = this.mixer.clipAction(testAnim);
-        // this.test.clampWhenFinished = true;
-        // this.test.enable = true;
-        // this.test.play();
+        // const idleActionAnim = THREE.AnimationClip.findByName(gltf.animations, 'idleAction');
+        // idleActionAnim.tracks.splice(6, 7);
+        // this.idleAnim = this.mixer.clipAction(idleActionAnim);
+        // this.idleAnim.clampWhenFinished = true;
+        // this.idleAnim.enable = true;
+        // this.idleAnim.play();
 
         const eyeBlinkingAnim = THREE.AnimationClip.findByName(gltf.animations, 'eyeBlinking');
         this.eyeBlinking = this.mixer.clipAction(eyeBlinkingAnim);
@@ -299,22 +299,21 @@ export class Scene{
 
   followMouse(gltf){
 
+    const clientRect =  this.container.getBoundingClientRect();
     const onMouseMove = (x, y) => {
-      const offsetY = y / window.innerHeight;
-      const offsetX = x / window.innerWidth;
+      const offsetY = y / (window.innerHeight - (window.innerHeight / 2 - clientRect.top) + this.container.offsetHeight / 2);
+      const offsetX = x / (window.innerWidth - (window.innerWidth / 2 - clientRect.left) + this.container.offsetWidth / 2);
       if(!offsetX || !offsetY){
         return
       }
       const bones = [
-        gltf.scene.children[4].children[0].children[0].children[0],
-        // gltf.scene.children[4].children[0].children[1],
-        gltf.scene.children[4].children[0].children[2].children[0],
-        // gltf.scene.children[4].children[0].children[3],
+        gltf.scene.children[6].children[0].children[0].children[0],
+        gltf.scene.children[6].children[0].children[2].children[0],
       ]
 
       bones.forEach(bone => {
         const startRotation = bone.quaternion.clone();
-        bone.lookAt(new THREE.Vector3(20 * (offsetX - 0.5) - 1, -8 * (offsetY - 0.5), 10));
+        bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10));
         const endRotation = bone.quaternion.clone();
         bone.quaternion.copy(startRotation);
         const tweenRotation = new TWEEN.Tween(bone.quaternion).to(endRotation, 200).start().onComplete( () => {
