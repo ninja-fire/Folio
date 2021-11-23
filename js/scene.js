@@ -125,11 +125,11 @@ export class Scene{
 
   initRender(){
     this.renderer = new THREE.WebGLRenderer({
-      precision: "high-performance",
+      // precision: "high-performance",
       // gammaOutput: true,
       alpha: true,
       // antialias: true,
-      powerPreference: "high-performance",
+      // powerPreference: "high-performance",
       antialias: false,
       stencil: false,
       depth: false
