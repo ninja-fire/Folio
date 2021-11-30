@@ -174,7 +174,11 @@ export class Scene{
     this.controls.maxDistance = 6;
     this.controls.maxPolarAngle = Math.PI/1.8;
     this.controls.minPolarAngle = Math.PI/6;
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = 0.05;
+    this.controls.rotateSpeed = 0.5;
     this.controls.autoRotate = true;
+    this.controls.autoRotateSpeed = 1;
     this.controls.enablePan = false;
     this.controls.update();
   }
@@ -319,19 +323,19 @@ export class Scene{
       }
       // console.log(gltf.scene);
       const bones = [
-        gltf.scene.children[1].children[0].children[0].children[0],
-        gltf.scene.children[1].children[0].children[2].children[0],
+        gltf.scene.children[0].children[0].children[0].children[0],
+        gltf.scene.children[0].children[0].children[2].children[0],
       ]
       bones.forEach( (bone, i) => {
-        const startRotation = bone.quaternion.clone();
-        bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10));
-        const endRotation = bone.quaternion.clone();
-        bone.quaternion.copy(startRotation);
-
-        new TWEEN.Tween(bone.quaternion).to(endRotation, 200).start().onComplete( () => {
-          bone.quaternion.copy(endRotation);
-        } );
-        // bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10))
+      //   const startRotation = bone.quaternion.clone();
+      //   bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10));
+      //   const endRotation = bone.quaternion.clone();
+      //   bone.quaternion.copy(startRotation);
+      //
+      //   new TWEEN.Tween(bone.quaternion).to(endRotation, 200).start().onComplete( () => {
+      //     bone.quaternion.copy(endRotation);
+      //   } );
+        bone.lookAt(new THREE.Vector3(15 * (offsetX - 0.5) - 1, -6 * (offsetY - 0.5), 10))
       })
     }
 
